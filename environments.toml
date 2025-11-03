@@ -1,8 +1,8 @@
 ### Development environment configuration
 [development.network]
-rpc-url = "http://localhost:8000/rpc"
-network-passphrase = "Standalone Network ; February 2017"
-run-locally = true # automatically start the local network container, if not already running
+rpc-url = "https://soroban-testnet.stellar.org"
+network-passphrase = "Test SDF Network ; September 2015"
+run-locally = false # automatically start the local network container, if not already running
 
 [[development.accounts]]
 name = "me" # Required. Keys for this account will be saved to `./.stellar/identity`

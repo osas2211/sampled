@@ -19,13 +19,7 @@ impl GuessTheNumber {
         // Require auth from the admin to make the transfer
         admin.require_auth();
         // This is for testing purposes. Ensures that the XLM contract set up for unit testing and local network
-        xlm::register(env, &admin);
-        // Send the contract an amount of XLM to play with
-        xlm::token_client(env).transfer(
-            &admin,
-            env.current_contract_address(),
-            &xlm::to_stroops(1),
-        );
+
         // Set the admin in storage
         Self::set_admin(env, admin);
         // Set a random number between 1 and 10
@@ -46,27 +40,9 @@ impl GuessTheNumber {
     }
 
     /// Guess a number between 1 and 10
-    pub fn guess(env: &Env, a_number: u64, guesser: Address) -> Result<bool, Error> {
-        let xlm_client = xlm::token_client(env);
-        let contract_address = env.current_contract_address();
-        let guessed_it = a_number == Self::number(env);
-        if guessed_it {
-            let balance = xlm_client.balance(&contract_address);
-            if balance == 0 {
-                return Err(Error::NoBalanceToTransfer);
-            }
-            // Methods `try_*` will return an error if the method fails
-            // `.map_err` lets us convert the error to our custom Error type
-            let _ = xlm_client
-                .try_transfer(&contract_address, &guesser, &balance)
-                .map_err(|_| Error::FailedToTransferToGuesser)?;
-        } else {
-            guesser.require_auth();
-            let _ = xlm_client
-                .try_transfer(&guesser, &contract_address, &xlm::to_stroops(1))
-                .map_err(|_| Error::FailedToTransferFromGuesser)?;
-        }
-        Ok(guessed_it)
+    pub fn guess(env: &Env, a_number: u64, _guesser: Address) -> Result<bool, Error> {
+        let guess_result: bool = a_number == Self::number(env);
+        Ok(guess_result)
     }
 
     /// Admin can add more funds to the contract
