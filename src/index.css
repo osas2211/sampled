@@ -4,7 +4,6 @@
 @import "tailwind-scrollbar-hide/v4";
 
 /* Add these font imports */
-@import url("https://fonts.cdnfonts.com/css/pixter");
 @font-face {
   font-family: "Geist Sans";
   src: url("https://assets.vercel.com/raw/upload/v1703429545/fonts/geist-sans/Geist-Regular.woff2")
