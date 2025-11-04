@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AntConfigProvider } from "./components/shared/AntConfigProvider.tsx";
 import { SmoothScroll } from "./components/SmoothScroll.tsx";
 import { Loader } from "./components/shared/Loader.tsx";
+import { OnboardingProvider } from "./context/onboarding-context.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,12 +29,12 @@ createRoot(document.getElementById("root") as HTMLElement).render(
           <WalletProvider>
             <BrowserRouter>
               <AntConfigProvider>
-                {/* <OnboardingProvider> */}
-                <SmoothScroll>
-                  <Loader />
-                  <App />
-                </SmoothScroll>
-                {/* </OnboardingProvider> */}
+                <OnboardingProvider>
+                  <SmoothScroll>
+                    <Loader />
+                    <App />
+                  </SmoothScroll>
+                </OnboardingProvider>
               </AntConfigProvider>
             </BrowserRouter>
           </WalletProvider>

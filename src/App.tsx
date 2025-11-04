@@ -5,6 +5,7 @@ import { Routes, Route, Outlet, NavLink } from "react-router-dom";
 // import Home from "./pages/_Home.tsx"
 import Debugger from "./pages/Debugger.tsx";
 import { Home } from "./pages/Home.tsx";
+import OnBoardPage from "./pages/OnBoard.tsx";
 
 const AppLayout: React.FC = () => (
   <main>
@@ -58,6 +59,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/onboard" element={<OnBoardPage />} />
+
       <Route element={<AppLayout />}>
         <Route path="/debug" element={<Debugger />} />
         <Route path="/debug/:contractName" element={<Debugger />} />

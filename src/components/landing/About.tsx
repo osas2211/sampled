@@ -61,15 +61,15 @@ export const About = () => {
           <div className="max-w-[450px] md:text-xl">
             <p className="md:text-end">
               Finally, a{" "}
-              <span className="text-primary underline">marketplace</span> where
+              <span className="text-primary underline">marketplace</span> on
+              Stellar where
             </p>
             <p className="">
               producers own their work, set their prices, and get paid the
               moment{" "}
               <span className="text-primary underline"> someone buys</span>{" "}
-              their sample. Built on Stellar for instant,
+              their sample. Built for instant,{" "}
               <span className="text-primary underline">
-                {" "}
                 low-cost transactions.
               </span>
             </p>
@@ -98,7 +98,7 @@ export const About = () => {
           <div>
             <p className="max-w-[450px] leading-[1.7] top-desc-1">
               Sampled showcases why Stellar beats Ethereum for marketplaces:
-              instant payments, negligible fees, and real-time settlement. We
+              instant payments, negligible fees, and real-time settlement. I
               chose samples because producers feel the pain of slow payments
               most acutely. But this same architecture works for any digital
               commerce. Sampled isn't just a marketplace - it's a movement.
