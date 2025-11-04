@@ -1,0 +1,332 @@
+export const topArtists = [
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V",
+    },
+    followers: {
+      href: null,
+      total: 56373726,
+    },
+    genres: ["pop", "uk pop"],
+    href: "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+    id: "6eUKZXaKkcviH0Ku9w2n3V",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/f55cab0739390cf3b2c2f773b9c779b2f0ae8a99",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/31e1cfee4ec3849bf3036a037cbbf57239f5c7a2",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/f2e3eb4c81da6cd2f32036ab0946c6bbfe4a86b7",
+        width: 160,
+      },
+    ],
+    name: "Ed Sheeran",
+    popularity: 98,
+    type: "artist",
+    uri: "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V",
+    },
+    followers: {
+      href: null,
+      total: 56373726,
+    },
+    genres: ["pop", "uk pop"],
+    href: "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+    id: "6eUKZXaKkcviH0Ku9w2n3V",
+    images: [
+      {
+        height: 640,
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl8ozaIKLq8tadzhPhcQaaArK7LQr415kBVWMCqmZFpZfPR_lw",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/31e1cfee4ec3849bf3036a037cbbf57239f5c7a2",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/f2e3eb4c81da6cd2f32036ab0946c6bbfe4a86b7",
+        width: 160,
+      },
+    ],
+    name: "Sabrina Carpenter",
+    popularity: 98,
+    type: "artist",
+    uri: "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V",
+    },
+    followers: {
+      href: null,
+      total: 56373726,
+    },
+    genres: ["pop", "uk pop"],
+    href: "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+    id: "6eUKZXaKkcviH0Ku9w2n3V",
+    images: [
+      {
+        height: 640,
+        url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSeHLdtoUJ_71zVq3eyV63t1Axx9c0FJ1Fr2BYfY-SsV9Ft4O7SfKcvFG2X22azsNzOm8xuympjEuekVC6Ron6IEA",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/31e1cfee4ec3849bf3036a037cbbf57239f5c7a2",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/f2e3eb4c81da6cd2f32036ab0946c6bbfe4a86b7",
+        width: 160,
+      },
+    ],
+    name: "Rihanna",
+    popularity: 98,
+    type: "artist",
+    uri: "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V",
+    },
+    followers: {
+      href: null,
+      total: 56373726,
+    },
+    genres: ["pop", "uk pop"],
+    href: "https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V",
+    id: "6eUKZXaKkcviH0Ku9w2n3V",
+    images: [
+      {
+        height: 640,
+        url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMOl177G10AerETP6sitPfZeMvkDiMoBhyGQQaKXd__7jR44MOMGhkgl5tnezgkEIC_FlcLlsRlAKTYUS64nVV5w",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/31e1cfee4ec3849bf3036a037cbbf57239f5c7a2",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/f2e3eb4c81da6cd2f32036ab0946c6bbfe4a86b7",
+        width: 160,
+      },
+    ],
+    name: "Bruno Mars",
+    popularity: 98,
+    type: "artist",
+    uri: "spotify:artist:6eUKZXaKkcviH0Ku9w2n3V",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02",
+    },
+    followers: {
+      href: null,
+      total: 25341024,
+    },
+    genres: ["pop", "post-teen pop"],
+    href: "https://api.spotify.com/v1/artists/06HL4z0CvFAxyc27GXpf02",
+    id: "06HL4z0CvFAxyc27GXpf02",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/62b33d12e2b9a033cf77585f6e3d4b2c6b3a63a1",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/9ab124f3323d161f87fc9b7f8b82ab1717483b3a",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/d28b46cd7e1b7336d1688d462085535963a77311",
+        width: 160,
+      },
+    ],
+    name: "Taylor Swift",
+    popularity: 95,
+    type: "artist",
+    uri: "spotify:artist:06HL4z0CvFAxyc27GXpf02",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/41MozSoPIsD1dJM0CLPjZF",
+    },
+    followers: {
+      href: null,
+      total: 10089125,
+    },
+    genres: ["k-pop", "k-pop girl group"],
+    href: "https://api.spotify.com/v1/artists/41MozSoPIsD1dJM0CLPjZF",
+    id: "41MozSoPIsD1dJM0CLPjZF",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/254b0e0fc1d4cf39de56960ed983c1ff7e3dff00",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/5f52e025177c168da1dd61dc3f264e37588831d7",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/6d088fb12fc7a71315edccf87a02c3d3b13952a7",
+        width: 160,
+      },
+    ],
+    name: "BLACKPINK",
+    popularity: 83,
+    type: "artist",
+    uri: "spotify:artist:41MozSoPIsD1dJM0CLPjZF",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/4e3QCzBNkr0t3GGqo86Ofl",
+    },
+    followers: {
+      href: null,
+      total: 122458,
+    },
+    genres: ["thai idol", "thai pop"],
+    href: "https://api.spotify.com/v1/artists/4e3QCzBNkr0t3GGqo86Ofl",
+    id: "4e3QCzBNkr0t3GGqo86Ofl",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/744d96755a18e2d1739259881191a0d4210c26c7",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/83ecf64e36f315178c496ec7484d1e18f3aa99e7",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/b539d31f8ecb96b9637d7f280db637ed240686e0",
+        width: 160,
+      },
+    ],
+    name: "Stamp",
+    popularity: 61,
+    type: "artist",
+    uri: "spotify:artist:4e3QCzBNkr0t3GGqo86Ofl",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/5pokGZ1K9Hr6etaKPDxSG8",
+    },
+    followers: {
+      href: null,
+      total: 552229,
+    },
+    genres: ["thai pop"],
+    href: "https://api.spotify.com/v1/artists/5pokGZ1K9Hr6etaKPDxSG8",
+    id: "5pokGZ1K9Hr6etaKPDxSG8",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/4f0570457ba3d443eef817ec20563a5a655b78b0",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/4a6d779e348b00c561828ac19839818488fcdbc3",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/5ef3748b9f3301c86ed5642d8408b4a6b8afad8d",
+        width: 160,
+      },
+    ],
+    name: "The Toys",
+    popularity: 57,
+    type: "artist",
+    uri: "spotify:artist:5pokGZ1K9Hr6etaKPDxSG8",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/3yfUy4dhvq5DwrSMsEE6od",
+    },
+    followers: {
+      href: null,
+      total: 300652,
+    },
+    genres: ["thai idol", "thai pop"],
+    href: "https://api.spotify.com/v1/artists/3yfUy4dhvq5DwrSMsEE6od",
+    id: "3yfUy4dhvq5DwrSMsEE6od",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/a7c08479c9c400ada27d8046e8fffea125787170",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/e1000458dbf3f4ab23ec52c80e8457de35ef4131",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/29896592640497f0d70571d5c0a40ea6c5eb6cee",
+        width: 160,
+      },
+    ],
+    name: "Palmy",
+    popularity: 57,
+    type: "artist",
+    uri: "spotify:artist:3yfUy4dhvq5DwrSMsEE6od",
+  },
+  {
+    external_urls: {
+      spotify: "https://open.spotify.com/artist/0TnOYISbd1XYRBk9myaseg",
+    },
+    followers: {
+      href: null,
+      total: 7443754,
+    },
+    genres: ["dance pop", "latin", "miami hip hop", "pop", "pop rap"],
+    href: "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
+    id: "0TnOYISbd1XYRBk9myaseg",
+    images: [
+      {
+        height: 640,
+        url: "https://i.scdn.co/image/1353990534aef10c946cf3a47865ac22471be5c4",
+        width: 640,
+      },
+      {
+        height: 320,
+        url: "https://i.scdn.co/image/f3a0aca9f85c6cdad37ebcc51a01879bf8c50af9",
+        width: 320,
+      },
+      {
+        height: 160,
+        url: "https://i.scdn.co/image/5ede30313c461d7ed0f5c4f3dea484fd349d49a9",
+        width: 160,
+      },
+    ],
+    name: "Pitbull",
+    popularity: 86,
+    type: "artist",
+    uri: "spotify:artist:0TnOYISbd1XYRBk9myaseg",
+  },
+];

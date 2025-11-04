@@ -1,2 +1,98 @@
 /* Import font for Stellar Design System */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Inconsolata:wght@500&display=swap");
+@import "tailwindcss";
+@import "tailwind-scrollbar-hide/v4";
+
+/* Add these font imports */
+@import url("https://fonts.cdnfonts.com/css/pixter");
+@font-face {
+  font-family: "Geist Sans";
+  src: url("https://assets.vercel.com/raw/upload/v1703429545/fonts/geist-sans/Geist-Regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("https://assets.vercel.com/raw/upload/v1703429545/fonts/geist-mono/GeistMono-Regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Sequel Sans";
+  src: url("./fonts/Sequel-Sans-Book-Disp.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Pixter Display Bold";
+  src: url("./fonts/Pixter-Display-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Pixter Display";
+  src: url("./fonts/Pixter-Display.ttf") format("truetype");
+}
+
+:root {
+  --background: #010101;
+  --foreground: #010101;
+  --pale-grey-color: #fdfdff;
+  --night-color: #0b090a;
+  --primary-color: #c3ff49;
+  --font-geist-sans: "Geist Sans", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
+  --font-pixter-display: "Pixter Display", sans-serif;
+  --font-sequel-sans: "Sequel Sans", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-pale-grey: var(--pale-grey-color);
+  --color-night: #0b090a;
+  --color-primary: #c3ff49;
+  --color-grey-1000: #0a0a0a;
+  --color-grey-900: #121112;
+  --color-grey-800: #1b1819;
+  --color-grey-700: #262424;
+  --color-grey-600: #3c3839;
+  --color-grey-500: #534d4e;
+  --color-grey-400: #797072;
+  --color-grey-300: #b8b2b3;
+  --color-grey-200: #d6d2d3;
+  --color-grey-100: #e3e1e1;
+  --color-grey-50: #edebec;
+  --color-grey-0: #ffffff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-pixter: var(--font-pixter-display);
+  --font-sequel: var(--font-sequel-sans);
+}
+
+body {
+  background-color: #010101;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #534d4e;
+}
+
+.loader-up-1 {
+  clip-path: polygon(65% 45%, 100% 45%, 100% 100%, 0% 100%, 0 0, 40% 0);
+}
+
+.loader-up-2 {
+  clip-path: polygon(60% 45%, 100% 45%, 100% 100%, 0% 100%, 0 0, 35% 0);
+}
+
+#coin-info-details .ant-tabs-nav-list {
+  width: 100%;
+  justify-content: space-between;
+}
+
+#coin-info-details .ant-tabs-nav-list .ant-tabs-tab {
+  width: 100% !important;
+}
+
+/* #coin-info-details .ant-tabs-nav-list .ant-tabs-ink-bar {
+  width: 100% !important;
+} */

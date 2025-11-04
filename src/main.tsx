@@ -7,6 +7,9 @@ import { WalletProvider } from "./providers/WalletProvider.tsx";
 import { NotificationProvider } from "./providers/NotificationProvider.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AntConfigProvider } from "./components/shared/AntConfigProvider.tsx";
+import { SmoothScroll } from "./components/SmoothScroll.tsx";
+import { Loader } from "./components/shared/Loader.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,14 +22,23 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <NotificationProvider>
-      <QueryClientProvider client={queryClient}>
-        <WalletProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </WalletProvider>
-      </QueryClientProvider>
-    </NotificationProvider>
+    <div className="antialiased bg-background text-white">
+      <NotificationProvider>
+        <QueryClientProvider client={queryClient}>
+          <WalletProvider>
+            <BrowserRouter>
+              <AntConfigProvider>
+                {/* <OnboardingProvider> */}
+                <SmoothScroll>
+                  <Loader />
+                  <App />
+                </SmoothScroll>
+                {/* </OnboardingProvider> */}
+              </AntConfigProvider>
+            </BrowserRouter>
+          </WalletProvider>
+        </QueryClientProvider>
+      </NotificationProvider>
+    </div>
   </StrictMode>,
 );
