@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { SpecialButton } from "../shared/SpecialButton";
 import { Link } from "react-router-dom";

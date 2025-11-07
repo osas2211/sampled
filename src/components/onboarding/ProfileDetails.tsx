@@ -1,4 +1,3 @@
-"use client";
 import { useOnboarding } from "../../hooks/useOnboarding";
 import { Button, DatePicker, Form, Input, Radio } from "antd";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";

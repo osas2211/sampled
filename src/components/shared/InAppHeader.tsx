@@ -28,22 +28,22 @@ export const InAppHeader = () => {
               <Link
                 to={""}
                 className={`flex items-center gap-2 ${
-                  pathname.includes("/playlists")
-                    ? "text-white"
-                    : "text-grey-300"
+                  pathname.includes("/upload") ? "text-white" : "text-grey-300"
                 }`}
               >
                 <CgPlayList />
-                <p>Playlists</p>
+                <p>Upload</p>
               </Link>
               <Link
                 to={""}
                 className={`flex items-center gap-2 ${
-                  pathname.includes("/events") ? "text-white" : "text-grey-300"
+                  pathname.includes("/my-samples")
+                    ? "text-white"
+                    : "text-grey-300"
                 }`}
               >
                 <MdOutlineEventNote />
-                <p>Events</p>
+                <p>My Samples</p>
               </Link>
             </div>
             <div className="h-[45px] w-[45px] bg-grey-800 rounded-full flex items-center justify-center">

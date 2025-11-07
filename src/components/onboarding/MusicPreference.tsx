@@ -1,4 +1,3 @@
-"use client";
 import { musicGenres } from "../../constants/genres";
 import { useOnboarding } from "../../hooks/useOnboarding";
 import { Avatar, Button } from "antd";

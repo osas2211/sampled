@@ -1,4 +1,3 @@
-"use client";
 import { IOnboardData, IOnboardContext } from "../@types/onboard";
 import { createContext, useState } from "react";
 

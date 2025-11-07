@@ -1,4 +1,3 @@
-"use client";
 import { FaQuoteLeft } from "react-icons/fa";
 import { FiArrowUpLeft, FiArrowDownRight } from "react-icons/fi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

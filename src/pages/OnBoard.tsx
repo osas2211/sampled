@@ -1,4 +1,3 @@
-"use client";
 import { Logo } from "../components/shared/Logo";
 import { useOnboarding } from "../hooks/useOnboarding";
 import { ProfileDetails } from "../components/onboarding/ProfileDetails";

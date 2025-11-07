@@ -1,0 +1,48 @@
+"use client";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import { GrAdd } from "react-icons/gr";
+import { LuLibrary } from "react-icons/lu";
+import { Button } from "antd";
+
+export const HomeLibrary = () => {
+  return (
+    <div className="min-h-[91vh] bg-grey-900 rounded-2xl py-4 px-3 space-y-5 sticky top-[5rem] left-0">
+      <div className="text-grey-300 flex items-center justify-between gap-5">
+        <div className="flex items-center gap-2">
+          <LuLibrary />
+          <p>Your Library</p>
+        </div>
+        <div className="flex items-center gap-5">
+          <GrAdd />
+          <HiOutlineArrowRight />
+        </div>
+      </div>
+
+      <div className="bg-grey-800 py-4 px-5 rounded-xl">
+        <p className="text-lg mb-2">Create your first playlist</p>
+        <p className="text-sm mb-5 text-grey-200">
+          It&apos;s easy, we will help you.
+        </p>
+        <Button
+          className="!bg-white w-[140px] !h-[40px] !rounded-full"
+          type="primary"
+        >
+          Create playlist
+        </Button>
+      </div>
+
+      <div className="bg-grey-800 py-4 px-5 rounded-xl">
+        <p className="text-lg mb-2">Let&apos;s find some event to attend</p>
+        <p className="text-sm mb-5 text-grey-200">
+          We&apos;s keep you updated on upcoming events
+        </p>
+        <Button
+          className="!bg-white w-[140px] !h-[40px] !rounded-full"
+          type="primary"
+        >
+          Browse events
+        </Button>
+      </div>
+    </div>
+  );
+};

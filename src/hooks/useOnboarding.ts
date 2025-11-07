@@ -1,4 +1,3 @@
-"use client";
 import { onboardingContext } from "../context/onboarding-context";
 import { use } from "react";
 

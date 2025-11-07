@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
