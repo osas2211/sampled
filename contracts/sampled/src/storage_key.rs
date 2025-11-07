@@ -2,7 +2,7 @@ use soroban_sdk::{contracttype, Address};
 
 #[contracttype]
 #[derive(Debug, Clone)]
-pub enum StorageKeys {
+pub enum StorageKey {
     Sample(u32),
     Puchase(Address, u32),
     UserSamples(Address),
