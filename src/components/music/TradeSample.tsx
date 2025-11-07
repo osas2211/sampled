@@ -5,9 +5,9 @@ import { BsThreeDots } from "react-icons/bs";
 import { GoFlame } from "react-icons/go";
 import { TbTrendingUp } from "react-icons/tb";
 import { PurchaseSampleTab } from "./PurchaseSampleTab";
-import CoinInfoDetails from "./CoinInfoTabs";
+import SampleInfoTabs from "./SampleInfoTabs";
 
-export const TradeMusic = () => {
+export const TradeSample = () => {
   return (
     <div className="w-full bg-grey-900 rounded-2xl py-4 px-3 space-y-5 text-sm md:col-span-2">
       <div className="flex items-center justify-between">
@@ -54,7 +54,7 @@ export const TradeMusic = () => {
       </div>
 
       <div>
-        <CoinInfoDetails />
+        <SampleInfoTabs />
       </div>
     </div>
   );

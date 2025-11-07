@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+
 import { Logo } from "./Logo";
 import { RiHome4Line } from "react-icons/ri";
 import { CgPlayList } from "react-icons/cg";
@@ -6,9 +8,14 @@ import { CiBellOn, CiSearch } from "react-icons/ci";
 import { Avatar, Button } from "antd";
 import { CiMenuFries } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
+import { useWallet } from "../../hooks/useWallet";
+import { connectWallet } from "../../util/wallet";
+import { WalletButton } from "../WalletButton";
 
 export const InAppHeader = () => {
   const pathname = useLocation().pathname;
+  const { address } = useWallet();
+
   return (
     <div className="py-4 pb-3 md:py-4 bg-black/80 backdrop-blur-[50px] md:px-4 px-2 md:space-y-0 space-y-5">
       <div className="flex items-center justify-between gap-4 ">
@@ -52,12 +59,17 @@ export const InAppHeader = () => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <Button
-            type="primary"
-            className="w-[150px] md:!h-[42px] !h-[35px] !rounded-full font-semibold"
-          >
-            Connect Wallet
-          </Button>
+          {address ? (
+            <WalletButton />
+          ) : (
+            <Button
+              type="primary"
+              className="w-[150px] md:!h-[42px] !h-[35px] !rounded-full font-semibold"
+              onClick={connectWallet}
+            >
+              Connect Wallet
+            </Button>
+          )}
           <CiBellOn size={24} className="md:block hidden" />
           <Avatar
             size={45}

@@ -95,3 +95,12 @@ body {
 /* #coin-info-details .ant-tabs-nav-list .ant-tabs-ink-bar {
   width: 100% !important;
 } */
+
+/* Wallet Modal Styling */
+.wallet-modal .ant-modal-content {
+  @apply bg-grey-800 border border-grey-700 rounded-xl shadow-2xl;
+}
+
+.wallet-modal .ant-modal-body {
+  @apply p-0;
+}
