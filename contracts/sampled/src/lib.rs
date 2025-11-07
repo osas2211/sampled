@@ -5,6 +5,7 @@ mod data_structures;
 mod error;
 mod storage_key;
 
+use error::Error;
 use storage_key::StorageKey;
 
 use crate::data_structures::Sample;
@@ -32,6 +33,7 @@ impl Sampled {
         );
     }
 
+    /// UPLOAD a sample
     pub fn upload_sample(
         env: Env,
         seller: Address,
@@ -73,5 +75,38 @@ impl Sampled {
         storage.set(&StorageKey::UserSamples(seller.clone()), &user_samples);
 
         total_samples
+    }
+
+    /// GET a sample
+    pub fn get_sample(env: Env, sample_id: u32) -> Result<Sample, Error> {
+        let storage = env.storage().persistent();
+        let sample_opt: Option<Sample> = storage.get(&StorageKey::Sample(sample_id));
+        match sample_opt {
+            Some(value) => Ok(value),
+            None => Err(Error::SampleNotFound),
+        }
+    }
+
+    /// UPDATE a sample price
+    pub fn update_price(env: Env, new_price: i128, sample_id: u32) {
+        let storage = env.storage().persistent();
+        let sample: Option<Sample> = storage.get(&StorageKey::Sample(sample_id));
+        match sample {
+            Some(mut value) => {
+                value.price = new_price;
+                storage.set(&StorageKey::Sample(sample_id), &value);
+            }
+            None => {
+                panic!("Sample not found")
+            }
+        };
+    }
+
+    /// GET user samples
+    pub fn get_user_samples(env: Env, user_address: Address) -> Vec<u32> {
+        env.storage()
+            .persistent()
+            .get(&StorageKey::UserSamples(user_address))
+            .unwrap_or(vec![&env])
     }
 }
