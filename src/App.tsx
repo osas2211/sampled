@@ -6,6 +6,7 @@ import { Routes, Route, Outlet, NavLink } from "react-router-dom";
 import Debugger from "./pages/Debugger.tsx";
 import { Home } from "./pages/Home.tsx";
 import OnBoardPage from "./pages/OnBoard.tsx";
+import { UploadSamplePage } from "./pages/UploadSamplePage.tsx";
 
 const AppLayout: React.FC = () => (
   <main>
@@ -60,6 +61,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/onboard" element={<OnBoardPage />} />
+      <Route path="/upload-sample" element={<UploadSamplePage />} />
 
       <Route element={<AppLayout />}>
         <Route path="/debug" element={<Debugger />} />

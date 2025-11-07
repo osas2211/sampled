@@ -10,7 +10,7 @@ pub struct Sample {
     pub title: String,
     pub bpm: u32,
     pub genre: String,
-    pub total_sales: String,
+    pub total_sales: u32,
     pub is_active: bool,
 }
 
