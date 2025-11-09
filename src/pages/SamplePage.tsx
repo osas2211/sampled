@@ -3,7 +3,6 @@ import { BsThreeDots } from "react-icons/bs";
 import { GrAddCircle } from "react-icons/gr";
 import { PiPauseCircleDuotone, PiPlayCircleDuotone } from "react-icons/pi";
 import { TradeSample } from "../components/music/TradeSample";
-import { useGetUserSamples } from "../hooks/useSampledContract";
 import { useAudioPlayerContext } from "../context/audio-player-context";
 
 const lyrics = `
@@ -44,8 +43,6 @@ I swear to God I survive
 I swear to God I survive`;
 
 const SamplePage = () => {
-  const { data } = useGetUserSamples();
-  console.log(data);
   const { playTrack, audioPlayer } = useAudioPlayerContext();
   const track = {
     url: "https://olive-obliged-capybara-834.mypinata.cloud/ipfs/bafybeidbb7vw5umhpotnbs3mx4ig6a5zolqs6myaii6ozswvpz245emwuq",

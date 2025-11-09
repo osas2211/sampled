@@ -10,6 +10,7 @@ import { UploadSamplePage } from "./pages/UploadSamplePage.tsx";
 import ExplorePage from "./pages/ExplorePage.tsx";
 import InAppLayout from "./components/layout/InAppLayout.tsx";
 import SamplePage from "./pages/SamplePage.tsx";
+import { MarketPlace } from "./components/explore/MarketPlace.tsx";
 
 const AppLayout: React.FC = () => (
   <main>
@@ -67,6 +68,7 @@ function App() {
       <Route path="/upload-sample" element={<UploadSamplePage />} />
       <Route element={<InAppLayout />}>
         <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/market/:id" element={<MarketPlace />} />
         <Route path="/sample/:id" element={<SamplePage />} />
       </Route>
 

@@ -5,4 +5,5 @@ export interface IUploadSamplePayload {
   title: string;
   bpm: number;
   genre: string;
+  cover_image: string;
 }

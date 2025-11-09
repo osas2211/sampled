@@ -9,7 +9,7 @@ export const useUploadSample = () => {
   const { address, signTransaction } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CAZ5QICAIN6B4CZ3ARTVQVZYTXMHFMAPG32DEWS7NWT7QHOCBZX3AE5L",
+    contractId: "CDYEVMNPFSEFS2ULCIRK3PNHJFA2VQ2X6OR2XQGC3GKSJ32D4KT2P4V7",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -40,7 +40,7 @@ export const useGetUserSamples = () => {
   const { address } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CAZ5QICAIN6B4CZ3ARTVQVZYTXMHFMAPG32DEWS7NWT7QHOCBZX3AE5L",
+    contractId: "CDYEVMNPFSEFS2ULCIRK3PNHJFA2VQ2X6OR2XQGC3GKSJ32D4KT2P4V7",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -53,5 +53,23 @@ export const useGetUserSamples = () => {
       return result;
     },
     queryKey: ["user-samples", address],
+  });
+};
+
+export const useGetAllSamples = () => {
+  const { address } = useWallet();
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDYEVMNPFSEFS2ULCIRK3PNHJFA2VQ2X6OR2XQGC3GKSJ32D4KT2P4V7",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+  return useQuery({
+    queryFn: async () => {
+      const { result } = await client.get_all_samples();
+      return result;
+    },
+    queryKey: ["all-samples"],
   });
 };

@@ -12,6 +12,7 @@ pub struct Sample {
     pub genre: String,
     pub total_sales: u32,
     pub is_active: bool,
+    pub cover_image: String,
 }
 
 #[contracttype]

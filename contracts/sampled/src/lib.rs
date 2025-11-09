@@ -50,6 +50,7 @@ impl Sampled {
         title: String,
         bpm: u32,
         genre: String,
+        cover_image: String,
     ) -> u32 {
         let storage = env.storage().persistent();
         seller.require_auth();
@@ -70,6 +71,7 @@ impl Sampled {
             id: total_samples,
             total_sales: 0u32,
             is_active: true,
+            cover_image: cover_image.clone(),
         };
 
         storage.set(&total_samples, &sample);
@@ -148,8 +150,10 @@ impl Sampled {
             .unwrap_or(vec![&env])
     }
 
-    pub fn get_all_samples(env: Env) -> Option<Vec<Sample>> {
-        env.storage().persistent().get(&ALL_SAMPLES_KEY)
-        // .unwrap_or(vec![&env])
+    pub fn get_all_samples(env: Env) -> Vec<Sample> {
+        env.storage()
+            .persistent()
+            .get(&ALL_SAMPLES_KEY)
+            .unwrap_or(vec![&env])
     }
 }

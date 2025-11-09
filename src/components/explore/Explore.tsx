@@ -29,7 +29,7 @@ export const Explore = () => {
         <div className="flex gap-3 whitespace-nowrap overflow-auto scrollbar-hide">
           {musicGenres.map((genre, index) => {
             return (
-              <Link to={""} key={index}>
+              <Link to={`/market/${genre.name.toLowerCase()}`} key={index}>
                 <div
                   className={`flex items-center gap-3 px-3 py-2 rounded-md bg-grey-700/70 cursor-pointer`}
                 >
@@ -56,7 +56,7 @@ export const Explore = () => {
           {recommended.reverse().map((genre, index) => {
             return (
               <Link
-                to={"/sample/id"}
+                to={`/market/${genre.name.toLowerCase()}`}
                 className={`md:space-y-3 space-y-1 rounded-md max-w-[11rem]`}
                 key={index}
               >

@@ -29,6 +29,19 @@
   src: url("./fonts/Pixter-Display.ttf") format("truetype");
 }
 
+/* ARVO FONTS */
+@font-face {
+  font-family: "Arvo";
+  src: url(./fonts/Arvo-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Arvo";
+  src: url(./fonts/Arvo-Bold.ttf);
+  font-weight: 700;
+}
+
 :root {
   --background: #010101;
   --foreground: #010101;
@@ -39,6 +52,7 @@
   --font-geist-mono: "Geist Mono", monospace;
   --font-pixter-display: "Pixter Display", sans-serif;
   --font-sequel-sans: "Sequel Sans", sans-serif;
+  --font-arvo: "Arvo", sans-serif;
 }
 
 @theme inline {
@@ -63,6 +77,7 @@
   --font-mono: var(--font-geist-mono);
   --font-pixter: var(--font-pixter-display);
   --font-sequel: var(--font-sequel-sans);
+  --font-arvo: var(--font-arvo);
 }
 
 body {

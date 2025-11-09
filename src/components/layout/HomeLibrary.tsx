@@ -1,4 +1,3 @@
-"use client";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 import { LuLibrary } from "react-icons/lu";
@@ -19,7 +18,7 @@ export const HomeLibrary = () => {
       </div>
 
       <div className="bg-grey-800 py-4 px-5 rounded-xl">
-        <p className="text-lg mb-2">Create your first playlist</p>
+        <p className="text-lg mb-2">Upload and monetize a sample</p>
         <p className="text-sm mb-5 text-grey-200">
           It&apos;s easy, we will help you.
         </p>
@@ -27,20 +26,20 @@ export const HomeLibrary = () => {
           className="!bg-white w-[140px] !h-[40px] !rounded-full"
           type="primary"
         >
-          Create playlist
+          Create sample
         </Button>
       </div>
 
       <div className="bg-grey-800 py-4 px-5 rounded-xl">
-        <p className="text-lg mb-2">Let&apos;s find some event to attend</p>
+        <p className="text-lg mb-2">View samples</p>
         <p className="text-sm mb-5 text-grey-200">
-          We&apos;s keep you updated on upcoming events
+          View purchased and created samples
         </p>
         <Button
           className="!bg-white w-[140px] !h-[40px] !rounded-full"
           type="primary"
         >
-          Browse events
+          Browse samples
         </Button>
       </div>
     </div>

@@ -35,6 +35,7 @@ interface SampleFormData {
   key: MusicKey;
   genre: Genre;
   tags: string[];
+  coverImage?: File | null;
 }
 
 interface UploadProgress {
@@ -108,14 +109,20 @@ const UploadUI: React.FC<UploadUIProps> = ({
     key: MusicKey.C,
     genre: Genre.Trap,
     tags: [],
+    coverImage: null,
   });
 
   const [errors, setErrors] = useState<
     Partial<Record<keyof SampleFormData, string>>
   >({});
 
+  const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
+    null,
+  );
+
   // Refs
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const coverImageInputRef = useRef<HTMLInputElement>(null);
 
   // File validation
   const validateFile = (file: File): boolean => {
@@ -166,6 +173,42 @@ const UploadUI: React.FC<UploadUIProps> = ({
     if (selectedFile && validateFile(selectedFile)) {
       setFile(selectedFile);
       analyzeAudio(selectedFile);
+    }
+  };
+
+  // Cover image handlers
+  const handleCoverImageSelect = (e: ChangeEvent<HTMLInputElement>): void => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        // 5MB limit
+        toast.error("Error", {
+          className: "!bg-red-500 *:!text-white !border-0",
+          description: (
+            <p className="text-white">Cover image must be less than 5MB</p>
+          ),
+          duration: 5000,
+          icon: <IoCloseCircleSharp size={20} />,
+        });
+        return;
+      }
+
+      setFormData((prev) => ({ ...prev, coverImage: selectedFile }));
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCoverImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const removeCoverImage = (): void => {
+    setFormData((prev) => ({ ...prev, coverImage: null }));
+    setCoverImagePreview(null);
+    if (coverImageInputRef.current) {
+      coverImageInputRef.current.value = "";
     }
   };
 
@@ -227,6 +270,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
   const resetForm = (): void => {
     setFile(null);
     setFileMetadata(null);
+    setCoverImagePreview(null);
     setFormData({
       title: "",
       price: "",
@@ -234,11 +278,15 @@ const UploadUI: React.FC<UploadUIProps> = ({
       key: MusicKey.C,
       genre: Genre.Trap,
       tags: [],
+      coverImage: null,
     });
     setErrors({});
     setUploadProgress({ status: "idle", percentage: 0 });
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+    if (coverImageInputRef.current) {
+      coverImageInputRef.current.value = "";
     }
   };
 
@@ -307,6 +355,13 @@ const UploadUI: React.FC<UploadUIProps> = ({
 
     try {
       const audioLink = await uploadFile(file);
+
+      // Upload cover image if provided
+      let coverImageLink = "";
+      if (formData.coverImage) {
+        coverImageLink = await uploadFile(formData.coverImage);
+      }
+
       await uploadSample({
         price: BigInt(formData.price),
         ipfs_link: audioLink ?? "",
@@ -314,6 +369,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
         title: formData.title,
         genre: formData.genre,
         seller: address,
+        cover_image: coverImageLink,
       });
 
       toast.success("Success", {
@@ -534,6 +590,48 @@ const UploadUI: React.FC<UploadUIProps> = ({
                     <div className="stat-value">{calculateEarnings()} XLM</div>
                   </div>
                 </div>
+              </div>
+
+              {/* Cover Image Upload */}
+              <div className="form-group">
+                <label className="form-label">Cover Image (Optional)</label>
+
+                {!coverImagePreview ? (
+                  <div
+                    className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-primary transition-colors bg-grey-900"
+                    onClick={() => coverImageInputRef.current?.click()}
+                  >
+                    <Upload className="mx-auto mb-2 text-gray-400" size={32} />
+                    <p className="text-sm text-gray-400">
+                      Click to upload cover image
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      PNG, JPG up to 5MB
+                    </p>
+                    <input
+                      ref={coverImageInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleCoverImageSelect}
+                      className="hidden"
+                    />
+                  </div>
+                ) : (
+                  <div className="relative rounded-lg overflow-hidden border-2 border-primary/30">
+                    <img
+                      src={coverImagePreview}
+                      alt="Cover preview"
+                      className="w-full h-48 object-cover"
+                    />
+                    <button
+                      onClick={removeCoverImage}
+                      className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition-colors"
+                      type="button"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           )}
