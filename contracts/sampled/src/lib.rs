@@ -46,7 +46,7 @@ impl Sampled {
         env: Env,
         seller: Address,
         price: i128,
-        ipfs_hash: String,
+        ipfs_link: String,
         title: String,
         bpm: u32,
         genre: String,
@@ -63,7 +63,7 @@ impl Sampled {
         let sample = Sample {
             seller: seller.clone(),
             price,
-            ipfs_hash: ipfs_hash.clone(),
+            ipfs_link: ipfs_link.clone(),
             title: title.clone(),
             bpm,
             genre: genre.clone(),

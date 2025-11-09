@@ -9,7 +9,7 @@ export const useUploadSample = () => {
   const { address, signTransaction } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CBL2PZKH2R5FDJML3ADIWHKCXKC7CGROKCVUHU2VYCGDV25W23HYTQ7G",
+    contractId: "CAZ5QICAIN6B4CZ3ARTVQVZYTXMHFMAPG32DEWS7NWT7QHOCBZX3AE5L",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -40,7 +40,7 @@ export const useGetUserSamples = () => {
   const { address } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CBL2PZKH2R5FDJML3ADIWHKCXKC7CGROKCVUHU2VYCGDV25W23HYTQ7G",
+    contractId: "CAZ5QICAIN6B4CZ3ARTVQVZYTXMHFMAPG32DEWS7NWT7QHOCBZX3AE5L",
     rpcUrl,
     allowHttp: true,
     publicKey: address,

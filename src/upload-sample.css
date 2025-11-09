@@ -458,9 +458,8 @@
 
 /* Progress bar */
 .upload-progress {
-  margin-top: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  height: 6px;
   border-radius: 2px;
   overflow: hidden;
 }

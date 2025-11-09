@@ -15,12 +15,17 @@ import {
   X,
   Zap,
   TrendingUp,
+  XIcon,
 } from "lucide-react";
 import { Header } from "../shared/Header";
 import { useUploadSample } from "../../hooks/useSampledContract";
 import { useWallet } from "../../hooks/useWallet";
 import { Button } from "antd";
 import { InAppHeader } from "../shared/InAppHeader";
+import { useUploadFileToIPFS } from "../../hooks/usePinata";
+import { toast } from "sonner";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 // Type definitions
 interface SampleFormData {
@@ -175,7 +180,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
         lastModified: audioFile.lastModified,
       };
 
-      // In production, you would:
+      // In production, I would:
       // 1. Use Web Audio API to analyze BPM
       // 2. Generate waveform data
       // 3. Detect key using music theory algorithms
@@ -281,71 +286,49 @@ const UploadUI: React.FC<UploadUIProps> = ({
 
   // Upload handler
   const { mutateAsync: uploadSample, isPending } = useUploadSample();
+  const {
+    mutateAsync: uploadFile,
+    isPending: isUploadingFile,
+    uploadProgress: pinataProgress,
+  } = useUploadFileToIPFS();
   const { address } = useWallet();
+
   const handleUpload = async (): Promise<void> => {
+    if (!address) {
+      toast.error("Error", {
+        className: "!bg-red-500 *:!text-white !border-0",
+        description: <p className="text-white">Wallet not connected</p>,
+        duration: 5000,
+        icon: <IoCloseCircleSharp size={20} />,
+      });
+      throw new Error("Wallet not connected");
+    }
     if (!validateForm() || !file) return;
 
     try {
-      // setUploadProgress({ status: "uploading", percentage: 0 })
-
-      // Simulate upload progress
-      // for (let i = 0; i <= 100; i += 10) {
-      //   setUploadProgress({
-      //     status: "uploading",
-      //     percentage: i,
-      //     message: `Uploading to IPFS... ${i}%`,
-      //   })
-      //   // await new Promise((resolve) => setTimeout(resolve, 200))
-      // }
-
-      const result = await uploadSample({
+      const audioLink = await uploadFile(file);
+      await uploadSample({
         price: BigInt(formData.price),
-        ipfs_hash: "hello",
+        ipfs_link: audioLink ?? "",
         bpm: Number(formData.bpm),
         title: formData.title,
         genre: formData.genre,
-        seller: address!,
+        seller: address,
       });
 
-      // setUploadProgress({
-      //   status: "processing",
-      //   percentage: 100,
-      //   message: "Creating smart contract entry...",
-      // })
-
-      // In production, you would:
-      // 1. Upload file to IPFS
-      // 2. Get IPFS hash
-      // 3. Call smart contract with metadata
-      // 4. Wait for transaction confirmation
-
-      // const mockIpfsHash = "Qm" + Math.random().toString(36).substring(2, 15)
-
-      // // Simulate contract interaction
-      // await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // setUploadProgress({
-      //   status: "complete",
-      //   percentage: 100,
-      //   message: "Successfully uploaded!",
-      // })
-
-      // // Callback to parent component
-      // if (onUploadComplete) {
-      //   onUploadComplete(mockIpfsHash, formData)
-      // }
+      toast.success("Success", {
+        className: "!bg-primary !border-0",
+        description: "Successfully uploaded your sample",
+        duration: 5000,
+        icon: <BsCheckCircleFill />,
+      });
 
       // // Reset form after success
-      // setTimeout(() => {
-      //   resetForm()
-      // }, 3000)
+      setTimeout(() => {
+        resetForm();
+      }, 3000);
     } catch (error) {
       console.error("Upload error:", error);
-      // setUploadProgress({
-      //   status: "error",
-      //   percentage: 0,
-      //   message: "Upload failed. Please try again.",
-      // })
     }
   };
 
@@ -436,12 +419,15 @@ const UploadUI: React.FC<UploadUIProps> = ({
                     !formData.price ||
                     uploadProgress.status === "uploading"
                   }
+                  loading={isPending || isUploadingFile}
                 >
-                  {uploadProgress.status === "uploading" ||
-                  uploadProgress.status === "processing" ? (
+                  {isUploadingFile ? (
                     <div className="flex gap-2 items-center">
-                      <Loader2 className="spinner" size={20} />
-                      <span>UPLOADING...</span>
+                      <span>Uploading...</span>
+                    </div>
+                  ) : isPending ? (
+                    <div className="flex gap-2 items-center">
+                      <span>Saving sample...</span>
                     </div>
                   ) : (
                     <div className="flex gap-2 items-center">
@@ -552,30 +538,17 @@ const UploadUI: React.FC<UploadUIProps> = ({
             </div>
           )}
 
-          {/* Upload actions */}
-          {uploadProgress.status !== "complete" &&
-            uploadProgress.status !== "error" && (
-              <>
-                {/* Upload progress */}
-                {(uploadProgress.status === "uploading" ||
-                  isPending ||
-                  uploadProgress.status === "processing") && (
-                  <>
-                    <div className="upload-progress">
-                      <div
-                        className="progress-bar"
-                        style={{ width: `${uploadProgress.percentage}%` }}
-                      ></div>
-                    </div>
-                    {uploadProgress.message && (
-                      <div className="progress-message">
-                        {uploadProgress.message}
-                      </div>
-                    )}
-                  </>
-                )}
-              </>
-            )}
+          {pinataProgress !== 0 && (
+            <div className="space-y-4">
+              <p>Uploading sample to IPFS... {pinataProgress}%</p>
+              <div className="upload-progress">
+                <div
+                  className="progress-bar"
+                  style={{ width: `${pinataProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </>

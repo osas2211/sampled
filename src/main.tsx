@@ -11,6 +11,7 @@ import { AntConfigProvider } from "./components/shared/AntConfigProvider.tsx";
 import { SmoothScroll } from "./components/SmoothScroll.tsx";
 import { Loader } from "./components/shared/Loader.tsx";
 import { OnboardingProvider } from "./context/onboarding-context.tsx";
+import { Toaster } from "sonner";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,7 @@ createRoot(document.getElementById("root") as HTMLElement).render(
                   <SmoothScroll>
                     <Loader />
                     <App />
+                    <Toaster />
                   </SmoothScroll>
                 </OnboardingProvider>
               </AntConfigProvider>

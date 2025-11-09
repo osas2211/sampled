@@ -6,7 +6,7 @@ pub struct Sample {
     pub id: u32,
     pub seller: Address,
     pub price: i128,
-    pub ipfs_hash: String,
+    pub ipfs_link: String,
     pub title: String,
     pub bpm: u32,
     pub genre: String,
