@@ -48,7 +48,7 @@ const SamplePage = () => {
   console.log(data);
   const { playTrack, audioPlayer } = useAudioPlayerContext();
   const track = {
-    url: "https://olive-obliged-capybara-834.mypinata.cloud/ipfs/bafybeifuqooxz2fig7zumpblzeauzpiiy3fzbmafs5ygnmvtt2jih5axee",
+    url: "https://olive-obliged-capybara-834.mypinata.cloud/ipfs/bafybeidbb7vw5umhpotnbs3mx4ig6a5zolqs6myaii6ozswvpz245emwuq",
     title: "99 (feat.Daecolm)",
     artist: "@johnson",
     artwork: "/assets/images/artists/artist-2.png",
