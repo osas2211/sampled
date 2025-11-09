@@ -19,6 +19,8 @@ import {
 import { Header } from "../shared/Header";
 import { useUploadSample } from "../../hooks/useSampledContract";
 import { useWallet } from "../../hooks/useWallet";
+import { Button } from "antd";
+import { InAppHeader } from "../shared/InAppHeader";
 
 // Type definitions
 interface SampleFormData {
@@ -349,11 +351,13 @@ const UploadUI: React.FC<UploadUIProps> = ({
 
   return (
     <>
-      <div className="upload-container font-sequel">
-        <Header />
+      <div className="upload-container font-sequel from-primary/15 to-black bg-linear-to-bl">
+        <InAppHeader />
         {/* Main content */}
         <main className="main-content">
-          <h1 className="upload-title">GET SAMPLED</h1>
+          <h1 className="upload-title font-pixter">
+            GET SAMPLE<span className="text-primary underline">D</span>
+          </h1>
           <p className="upload-subtitle">
             Upload your beat. Set your price. Get paid instantly.
           </p>
@@ -376,54 +380,80 @@ const UploadUI: React.FC<UploadUIProps> = ({
           ) : (
             <div className="upload-grid">
               {/* Drop zone */}
-              <div
-                className={`drop-zone ${isDragging ? "dragging" : ""} ${file ? "has-file" : ""} ${errors.title && !file ? "error" : ""}`}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".mp3"
-                  onChange={handleFileSelect}
-                  style={{ display: "none" }}
-                />
+              <div className="space-y-4 md:space-y-20">
+                <div
+                  className={`drop-zone ${isDragging ? "dragging" : ""} ${file ? "has-file" : ""} ${errors.title && !file ? "error" : ""}`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".mp3"
+                    onChange={handleFileSelect}
+                    style={{ display: "none" }}
+                  />
 
-                {!file ? (
-                  <div className="drop-content">
-                    <Upload className="drop-icon" />
-                    <div className="drop-text">Drop your beat here</div>
-                    <div className="drop-subtext">WAV or MP3 • Max 50MB</div>
-                  </div>
-                ) : (
-                  <div className="file-preview">
-                    <div className="file-icon bg-linear-0 from-primary to-orange-400">
-                      <Music color="black" size={24} />
+                  {!file ? (
+                    <div className="drop-content">
+                      <Upload className="drop-icon" />
+                      <div className="drop-text">Drop your beat here</div>
+                      <div className="drop-subtext">WAV or MP3 • Max 50MB</div>
                     </div>
-                    <div className="file-info">
-                      <div className="file-name">{file.name}</div>
-                      <div className="file-size">
-                        {formatFileSize(file.size)}
+                  ) : (
+                    <div className="file-preview">
+                      <div className="file-icon bg-linear-0 from-primary to-orange-400">
+                        <Music color="black" size={24} />
                       </div>
+                      <div className="file-info">
+                        <div className="file-name">{file.name}</div>
+                        <div className="file-size">
+                          {formatFileSize(file.size)}
+                        </div>
+                      </div>
+                      <button
+                        className="file-remove"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setFile(null);
+                          setFileMetadata(null);
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
                     </div>
-                    <button
-                      className="file-remove"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setFile(null);
-                        setFileMetadata(null);
-                      }}
-                    >
-                      <X size={16} />
-                    </button>
-                  </div>
-                )}
+                  )}
+                </div>
+                <Button
+                  className="min-w-[250px] !h-12"
+                  type="primary"
+                  onClick={handleUpload}
+                  disabled={
+                    !file ||
+                    !formData.title ||
+                    !formData.price ||
+                    uploadProgress.status === "uploading"
+                  }
+                >
+                  {uploadProgress.status === "uploading" ||
+                  uploadProgress.status === "processing" ? (
+                    <div className="flex gap-2 items-center">
+                      <Loader2 className="spinner" size={20} />
+                      <span>UPLOADING...</span>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2 items-center">
+                      <Zap size={20} />
+                      <span>GET SAMPLED NOW</span>
+                    </div>
+                  )}
+                </Button>
               </div>
 
               {/* Form section */}
-              <div className="form-section">
+              <div className="form-section bg-grey-1000 p-5 rounded-md">
                 <div className="form-group">
                   <label className="form-label">Title</label>
                   <input
@@ -517,10 +547,6 @@ const UploadUI: React.FC<UploadUIProps> = ({
                     <div className="stat-label">You Earn</div>
                     <div className="stat-value">{calculateEarnings()} XLM</div>
                   </div>
-                  <div className="stat-card">
-                    <div className="stat-label">Instant Pay</div>
-                    <div className="stat-value">✓</div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -530,36 +556,6 @@ const UploadUI: React.FC<UploadUIProps> = ({
           {uploadProgress.status !== "complete" &&
             uploadProgress.status !== "error" && (
               <>
-                <div className="upload-actions">
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleUpload}
-                    disabled={
-                      !file ||
-                      !formData.title ||
-                      !formData.price ||
-                      uploadProgress.status === "uploading"
-                    }
-                  >
-                    {uploadProgress.status === "uploading" ||
-                    uploadProgress.status === "processing" ? (
-                      <>
-                        <Loader2 className="spinner" size={20} />
-                        <span>UPLOADING...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Zap size={20} />
-                        <span>GET SAMPLED NOW</span>
-                      </>
-                    )}
-                  </button>
-                  <button className="btn btn-secondary">
-                    <TrendingUp size={20} />
-                    <span>PREVIEW EARNINGS</span>
-                  </button>
-                </div>
-
                 {/* Upload progress */}
                 {(uploadProgress.status === "uploading" ||
                   isPending ||

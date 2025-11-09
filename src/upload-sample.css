@@ -81,7 +81,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #fff 0%, #ff006e 100%);
+  background: linear-gradient(90deg, #fff 0%, #c3ff49 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -106,11 +106,11 @@
 
 .nav-item:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: #ff006e;
+  border-color: #c3ff49;
 }
 
 .nav-item.connected {
-  background: linear-gradient(135deg, #ff006e 0%, #7c4dff 100%);
+  background: linear-gradient(135deg, #c3ff49 0%, #7c4dff 100%);
   border-color: transparent;
 }
 
@@ -118,7 +118,7 @@
 .main-content {
   position: relative;
   z-index: 10;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 4rem 2rem;
 }
@@ -164,7 +164,7 @@
 }
 
 .drop-zone.dragging {
-  border-color: #ff006e;
+  border-color: #c3ff49;
   background: rgba(255, 0, 110, 0.05);
 }
 
@@ -280,15 +280,16 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  padding: 0.75rem 1rem;
+  padding: 0.87rem 1rem;
   font-size: 1rem;
   font-family: "Space Grotesk", sans-serif;
   transition: all 0.3s;
+  border-radius: 5px;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #ff006e;
+  border-color: #c3ff49;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -320,7 +321,7 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #7c4dff;
+  color: #c3ff49;
   font-weight: 500;
 }
 
@@ -342,11 +343,12 @@
   font-family: "Space Grotesk", sans-serif;
   cursor: pointer;
   transition: all 0.3s;
+  border-radius: 5px;
 }
 
 .form-select:focus {
   outline: none;
-  border-color: #ff006e;
+  border-color: #c3ff49;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -358,7 +360,7 @@
 /* Stats preview */
 .stats-preview {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
@@ -383,7 +385,7 @@
 .stat-value {
   font-size: 1.5rem;
   font-weight: 600;
-  background: linear-gradient(90deg, #fff 0%, #ff006e 100%);
+  background: linear-gradient(90deg, #fff 0%, #c3ff49 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -411,7 +413,7 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff006e 0%, #ff006e 100%);
+  background: linear-gradient(135deg, #c3ff49 0%, #c3ff49 100%);
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -424,7 +426,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #7c4dff 0%, #ff006e 100%);
+  background: linear-gradient(135deg, #7c4dff 0%, #c3ff49 100%);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -465,7 +467,7 @@
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #ff006e 0%, #7c4dff 100%);
+  background: linear-gradient(90deg, #c3ff49 0%, #7c4dff 100%);
   transition: width 0.3s;
 }
 
