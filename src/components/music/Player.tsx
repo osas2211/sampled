@@ -1,30 +1,24 @@
 import { Slider } from "antd";
+import React from "react";
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 import {
   MdOutlinePlayCircleFilled,
-  MdSkipNext,
-  MdSkipPrevious,
   MdPauseCircleFilled,
+  MdFastForward,
+  MdFastRewind,
+  MdClose,
 } from "react-icons/md";
-import { useAudioPlayer } from "../../hooks/useAudioPlayer";
+// import { useAudioPlayer } from "../../hooks/useAudioPlayer"
+import { useAudioPlayerContext } from "../../context/audio-player-context";
 
 interface PlayerProps {
-  url: string;
-  title?: string;
-  artist?: string;
-  artwork?: string;
-  onNext?: () => void;
-  onPrevious?: () => void;
+  skipSeconds?: number;
 }
 
-export const Player = ({
-  url,
-  title = "99 (feat.Daecolm)",
-  artist = "@johnson",
-  artwork = "/assets/images/artists/artist-2.png",
-  onNext,
-  onPrevious,
-}: PlayerProps) => {
+export const Player = ({ skipSeconds = 10 }: PlayerProps) => {
+  const { currentTrack, isPlayerVisible, hidePlayer, audioPlayer } =
+    useAudioPlayerContext();
+
   const {
     isPlaying,
     currentTime,
@@ -38,7 +32,7 @@ export const Player = ({
     changeVolume,
     toggleMute,
     formatTime,
-  } = useAudioPlayer({ url });
+  } = audioPlayer;
 
   const handleProgressChange = (value: number) => {
     const newTime = (value / 100) * duration;
@@ -49,25 +43,40 @@ export const Player = ({
     changeVolume(value / 100);
   };
 
+  const handleFastForward = () => {
+    const newTime = Math.min(currentTime + skipSeconds, duration);
+    seek(newTime);
+  };
+
+  const handleRewind = () => {
+    const newTime = Math.max(currentTime - skipSeconds, 0);
+    seek(newTime);
+  };
+
+  if (!isPlayerVisible || !currentTrack) {
+    return null;
+  }
+
   return (
-    <div className="fixed bottom-0 left-0 w-full h-[5rem] bg-grey-1000 z-[100] flex md:flex-row flex-col items-center justify-between gap-4 px-4 py-3">
+    <div className="fixed bottom-0 left-0 w-full h-[5rem] bg-grey-1000 z-[100] flex md:flex-row flex-col items-center justify-between gap-4 px-4 py-3 animate-slide-up">
       <div className="md:flex hidden gap-2 items-end">
         <img
           className="w-[3.7rem] h-[3.7rem] rounded-md object-cover object-top shadow-2xl shadow-grey-900"
-          src={artwork}
-          alt={title}
+          src={currentTrack.artwork}
+          alt={currentTrack.title}
         />
         <div className="text-sm">
-          <p>{title}</p>
-          <p className="text-sm text-grey-300">{artist}</p>
+          <p>{currentTrack.title}</p>
+          <p className="text-sm text-grey-300">{currentTrack.artist}</p>
         </div>
       </div>
 
       <div className="flex md:flex-col flex-col-reverse">
         <div className="flex items-center justify-center gap-4">
-          <MdSkipPrevious
+          <MdFastRewind
             className="text-[25px] md:text-[35px] cursor-pointer hover:opacity-70 transition-opacity"
-            onClick={onPrevious}
+            onClick={handleRewind}
+            title={`Rewind ${skipSeconds}s`}
           />
 
           {isLoading ? (
@@ -88,9 +97,10 @@ export const Player = ({
             </>
           )}
 
-          <MdSkipNext
+          <MdFastForward
             className="text-[25px] md:text-[35px] cursor-pointer hover:opacity-70 transition-opacity"
-            onClick={onNext}
+            onClick={handleFastForward}
+            title={`Forward ${skipSeconds}s`}
           />
         </div>
 
@@ -112,7 +122,7 @@ export const Player = ({
         </div>
       </div>
 
-      <div>
+      <div className="flex items-center gap-4">
         <div className="md:flex hidden items-center gap-1">
           <button
             onClick={toggleMute}
@@ -135,6 +145,15 @@ export const Player = ({
             tooltip={{ formatter: null }}
           />
         </div>
+
+        {/* Close button */}
+        <button
+          onClick={hidePlayer}
+          className="hover:opacity-70 transition-opacity"
+          title="Close player"
+        >
+          <MdClose className="text-[20px] md:text-[24px]" />
+        </button>
       </div>
     </div>
   );

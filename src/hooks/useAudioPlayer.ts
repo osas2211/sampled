@@ -5,6 +5,22 @@ interface UseAudioPlayerProps {
   url: string;
 }
 
+export interface AudioPlayerData {
+  isPlaying: boolean;
+  currentTime: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+  isLoading: boolean;
+  buffered: number;
+  togglePlay: () => void;
+  seek: (time: number) => void;
+  changeVolume: (newVolume: number) => void;
+  toggleMute: () => void;
+  formatTime: (time: number) => string;
+  progress: number;
+}
+
 export const useAudioPlayer = ({ url }: UseAudioPlayerProps) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
