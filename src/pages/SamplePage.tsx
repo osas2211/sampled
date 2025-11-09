@@ -3,6 +3,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { GrAddCircle } from "react-icons/gr";
 import { PiPlayCircleDuotone } from "react-icons/pi";
 import { TradeSample } from "../components/music/TradeSample";
+import { useGetUserSamples } from "../hooks/useSampledContract";
 
 const lyrics = `
 How long 'til it feels like the wounds finally starting to heal
@@ -42,6 +43,8 @@ I swear to God I survive
 I swear to God I survive`;
 
 const SamplePage = () => {
+  const { data } = useGetUserSamples();
+  console.log(data);
   return (
     <div className="grid md:grid-cols-7 gap-2 min-h-[91vh]">
       <div className="md:col-span-5">

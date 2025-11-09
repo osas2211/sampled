@@ -17,6 +17,8 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Header } from "../shared/Header";
+import { useUploadSample } from "../../hooks/useSampledContract";
+import { useWallet } from "../../hooks/useWallet";
 
 // Type definitions
 interface SampleFormData {
@@ -214,65 +216,6 @@ const UploadUI: React.FC<UploadUIProps> = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  // Upload handler
-  const handleUpload = async (): Promise<void> => {
-    if (!validateForm() || !file) return;
-
-    try {
-      setUploadProgress({ status: "uploading", percentage: 0 });
-
-      // Simulate upload progress
-      for (let i = 0; i <= 100; i += 10) {
-        setUploadProgress({
-          status: "uploading",
-          percentage: i,
-          message: `Uploading to IPFS... ${i}%`,
-        });
-        await new Promise((resolve) => setTimeout(resolve, 200));
-      }
-
-      setUploadProgress({
-        status: "processing",
-        percentage: 100,
-        message: "Creating smart contract entry...",
-      });
-
-      // In production, you would:
-      // 1. Upload file to IPFS
-      // 2. Get IPFS hash
-      // 3. Call smart contract with metadata
-      // 4. Wait for transaction confirmation
-
-      const mockIpfsHash = "Qm" + Math.random().toString(36).substring(2, 15);
-
-      // Simulate contract interaction
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      setUploadProgress({
-        status: "complete",
-        percentage: 100,
-        message: "Successfully uploaded!",
-      });
-
-      // Callback to parent component
-      if (onUploadComplete) {
-        onUploadComplete(mockIpfsHash, formData);
-      }
-
-      // Reset form after success
-      setTimeout(() => {
-        resetForm();
-      }, 3000);
-    } catch (error) {
-      console.error("Upload error:", error);
-      setUploadProgress({
-        status: "error",
-        percentage: 0,
-        message: "Upload failed. Please try again.",
-      });
-    }
-  };
-
   // Reset form
   const resetForm = (): void => {
     setFile(null);
@@ -332,6 +275,76 @@ const UploadUI: React.FC<UploadUIProps> = ({
       ...prev,
       tags: prev.tags.filter((tag) => tag !== tagToRemove),
     }));
+  };
+
+  // Upload handler
+  const { mutateAsync: uploadSample, isPending } = useUploadSample();
+  const { address } = useWallet();
+  const handleUpload = async (): Promise<void> => {
+    if (!validateForm() || !file) return;
+
+    try {
+      // setUploadProgress({ status: "uploading", percentage: 0 })
+
+      // Simulate upload progress
+      // for (let i = 0; i <= 100; i += 10) {
+      //   setUploadProgress({
+      //     status: "uploading",
+      //     percentage: i,
+      //     message: `Uploading to IPFS... ${i}%`,
+      //   })
+      //   // await new Promise((resolve) => setTimeout(resolve, 200))
+      // }
+
+      const result = await uploadSample({
+        price: BigInt(formData.price),
+        ipfs_hash: "hello",
+        bpm: Number(formData.bpm),
+        title: formData.title,
+        genre: formData.genre,
+        seller: address!,
+      });
+
+      // setUploadProgress({
+      //   status: "processing",
+      //   percentage: 100,
+      //   message: "Creating smart contract entry...",
+      // })
+
+      // In production, you would:
+      // 1. Upload file to IPFS
+      // 2. Get IPFS hash
+      // 3. Call smart contract with metadata
+      // 4. Wait for transaction confirmation
+
+      // const mockIpfsHash = "Qm" + Math.random().toString(36).substring(2, 15)
+
+      // // Simulate contract interaction
+      // await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      // setUploadProgress({
+      //   status: "complete",
+      //   percentage: 100,
+      //   message: "Successfully uploaded!",
+      // })
+
+      // // Callback to parent component
+      // if (onUploadComplete) {
+      //   onUploadComplete(mockIpfsHash, formData)
+      // }
+
+      // // Reset form after success
+      // setTimeout(() => {
+      //   resetForm()
+      // }, 3000)
+    } catch (error) {
+      console.error("Upload error:", error);
+      // setUploadProgress({
+      //   status: "error",
+      //   percentage: 0,
+      //   message: "Upload failed. Please try again.",
+      // })
+    }
   };
 
   return (
@@ -549,6 +562,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
 
                 {/* Upload progress */}
                 {(uploadProgress.status === "uploading" ||
+                  isPending ||
                   uploadProgress.status === "processing") && (
                   <>
                     <div className="upload-progress">
