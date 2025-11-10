@@ -19,7 +19,7 @@ export const SampleListCard = ({ sample, index }: propsI) => {
           <div>
             <img
               alt=""
-              src={sample?.cover_image}
+              src={sample?.cover_image || "/favicon.ico"}
               className="rounded-lg object-cover h-[55px] w-[55px]"
             />
           </div>

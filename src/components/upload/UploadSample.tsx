@@ -26,6 +26,7 @@ import { useUploadFileToIPFS } from "../../hooks/usePinata";
 import { toast } from "sonner";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 // Type definitions
 interface SampleFormData {
@@ -362,7 +363,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
         coverImageLink = await uploadFile(formData.coverImage);
       }
 
-      await uploadSample({
+      const response = await uploadSample({
         price: BigInt(Number(formData.price) * 10_000_000),
         ipfs_link: audioLink ?? "",
         bpm: Number(formData.bpm),
@@ -377,6 +378,15 @@ const UploadUI: React.FC<UploadUIProps> = ({
         description: "Successfully uploaded your sample",
         duration: 5000,
         icon: <BsCheckCircleFill />,
+        action: (
+          <Link
+            to={`https://stellar.expert/explorer/testnet/tx/${response?.transactionHash}`}
+            target="_blank"
+            className="underline font-semibold"
+          >
+            View on explorer
+          </Link>
+        ),
       });
 
       // // Reset form after success

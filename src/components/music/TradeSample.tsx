@@ -15,7 +15,7 @@ export const TradeSample = ({ sample }: { sample: Sample }) => {
     <div className="w-full bg-grey-900 rounded-2xl py-4 px-3 space-y-5 text-sm md:col-span-2">
       <div className="flex items-center justify-between">
         <div className="flex gap-2 items-center">
-          <Avatar src={sample?.cover_image} />
+          <Avatar src={sample?.cover_image || "/favicon.ico"} />
           <Link
             to={`https://stellar.expert/explorer/testnet/account/${sample?.seller}`}
             target="_blank"

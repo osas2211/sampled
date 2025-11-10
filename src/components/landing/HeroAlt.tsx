@@ -118,7 +118,7 @@ export const HeroAlt = () => {
             </p>
 
             <Link
-              to={"/explore"}
+              to={"/market/all"}
               className="text-primary uppercase text-lg md:text-[18px] font-pixter hero-click-to-explore z-[55] relative"
             >
               [ {"click to explore"} ]

@@ -5,24 +5,24 @@ import { LuLayoutGrid } from "react-icons/lu";
 import { LiaListUlSolid } from "react-icons/lia";
 import { SampleCard } from "./SampleCard";
 import { SampleListCard } from "./SampleListCard";
-import { useGetAllSamples } from "../../hooks/useSampledContract";
 import { SamplesSkeletonLoader } from "./SamplesSkeletonLoader";
 import { Sample } from "sampled";
 import { MdMusicNote } from "react-icons/md";
 
 interface propsI {
   title: string;
+  data: Sample[];
+  isLoading: boolean;
 }
 
-export const SampleList = ({ title }: propsI) => {
+export const SampleList = ({ title, data, isLoading }: propsI) => {
   const [isGrid, setIsGrid] = useState(true);
-  const { isLoading, data } = useGetAllSamples();
   if (isLoading) {
     return <SamplesSkeletonLoader />;
   }
   if (data?.length === 0) {
     return (
-      <div>
+      <div className="mt-10 md:mt-20">
         <Empty
           description="No Sample available"
           image={<MdMusicNote size={100} className="text-primary" />}

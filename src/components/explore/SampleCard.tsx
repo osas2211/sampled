@@ -20,7 +20,7 @@ export const SampleCard = ({ sample }: propsI) => {
 
         <div className="relative h-[25rem] w-full z-[1]">
           <img
-            src={sample?.cover_image}
+            src={sample?.cover_image || "/favicon.ico"}
             alt=""
             // fill
             className="w-full h-full object-cover rounded-xl"
@@ -28,7 +28,7 @@ export const SampleCard = ({ sample }: propsI) => {
           <div className="absolute bottom-0 left-0 h-[11rem] w-full rounded-b-xl bg-black/15 backdrop-blur-[15px] z-[2] p-3">
             <p className="text-xl font-arvo">{sample?.title}</p>
             <div className="flex items-center gap-1">
-              <Avatar src={sample?.cover_image}>
+              <Avatar src={sample?.cover_image || "/favicon.ico"}>
                 <BiUser />
               </Avatar>
               <p className="text-sm truncate max-w-20">{sample?.seller}</p>
@@ -42,7 +42,7 @@ export const SampleCard = ({ sample }: propsI) => {
               </div>
               <div className="flex gap-2 text-center">
                 <div>
-                  <p>Song Hits</p>
+                  <p>Sample Hits</p>
                   <p className="text-red-200">{sample?.total_sales}</p>
                 </div>
               </div>

@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 const artists = [
   {
     name: "Austin Ally",
-    bio: "Started off as the little girl from Rosario, now at the top. She has released good songs and has tremenduos following.",
+    bio: "Started off as the little girl from Rosario, now at the top. She has released good samples and has tremenduos following.",
     pic: "/assets/images/artists/artist-1.avif",
     joined: "June 6, 2025",
   },
   {
     name: "Jerry Dawson",
-    bio: "Started off as the little boy from Rosario, now at the top. He has released good songs and has tremenduos following.",
+    bio: "Started off as the little boy from Rosario, now at the top. He has released good samples and has tremenduos following.",
     pic: "/assets/images/artists/artist-2.png",
     joined: "June 6, 2025",
   },
   {
     name: "Russo Amiron",
-    bio: "Started off as the little girl from Rosario, now at the top. She has released good songs and has tremenduos following.",
+    bio: "Started off as the little girl from Rosario, now at the top. She has released good samples and has tremenduos following.",
     pic: "/assets/images/artists/artist-3.avif",
     joined: "June 6, 2025",
   },
   {
     name: "Lucas Baker",
-    bio: "Started off as the little boy from Rosario, now at the top. He has released good songs and has tremenduos following.",
+    bio: "Started off as the little boy from Rosario, now at the top. He has released good samples and has tremenduos following.",
     pic: "/assets/images/artists/artist-5.avif",
     joined: "June 6, 2025",
   },
@@ -39,7 +39,7 @@ export const TopArtists = () => {
             to={"/explore"}
             className="text-primary uppercase text-lg md:text-[18px] font-pixter hero-click-to-explore hero-caption relative"
           >
-            [ {"explore songs"} ]
+            [ {"explore samples"} ]
           </Link>
         </div>
         <div className="col-span-2">

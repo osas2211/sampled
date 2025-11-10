@@ -242,12 +242,12 @@ impl Sampled {
             .set(&StorageKey::Purchase(buyer.clone(), sample_id), &purchase);
 
         // Add to buyer's purchases
-        let mut user_purchases: Vec<u32> = env
+        let mut user_purchases: Vec<Sample> = env
             .storage()
             .persistent()
             .get(&StorageKey::UserPurchases(buyer.clone()))
             .unwrap_or(vec![&env]);
-        user_purchases.push_back(sample_id);
+        user_purchases.push_back(sample.clone());
         env.storage()
             .persistent()
             .set(&StorageKey::UserPurchases(buyer.clone()), &user_purchases);
@@ -276,7 +276,7 @@ impl Sampled {
     }
 
     // Get user's purchased samples
-    pub fn get_user_purchases(env: Env, buyer: Address) -> Vec<u32> {
+    pub fn get_user_purchases(env: Env, buyer: Address) -> Vec<Sample> {
         env.storage()
             .persistent()
             .get(&StorageKey::UserPurchases(buyer))
@@ -333,6 +333,14 @@ impl Sampled {
             .get(&StorageKey::TotalVolume)
             .unwrap_or(0);
         (total_samples, total_volume)
+    }
+
+    // Get user's earnings balance
+    pub fn get_earnings(env: Env, user: Address) -> i128 {
+        env.storage()
+            .persistent()
+            .get(&StorageKey::Earnings(user))
+            .unwrap_or(0)
     }
 }
 

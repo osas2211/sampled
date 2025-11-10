@@ -9,19 +9,20 @@ gsap.registerPlugin(ScrambleTextPlugin);
 const routes = [
   {
     label: "MarketPlace",
-    route: "/market",
+    route: "/market/all",
   },
   {
     label: "Upload",
-    route: "/explore",
+    route: "/upload-sample",
   },
   {
     label: "My Samples",
-    route: "",
+    route: "/my-samples",
   },
   {
-    label: "Connect Wallet",
+    label: "Docs",
     route: "",
+    target: "_blank",
   },
 ];
 
@@ -39,6 +40,7 @@ export const Header = () => {
               <Link
                 to={route.route}
                 key={index}
+                target={route?.target}
                 className="uppercase font-pixter gap-1 text-[14px] leading-0 inline-flex items-center hover:gap-2 hover:!text-primary text-pale-grey transition-all relative z-[15] route-link"
               >
                 <span>[</span>

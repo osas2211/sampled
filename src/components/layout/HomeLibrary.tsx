@@ -2,6 +2,7 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 import { LuLibrary } from "react-icons/lu";
 import { Button } from "antd";
+import { Link } from "react-router-dom";
 
 export const HomeLibrary = () => {
   return (
@@ -22,12 +23,14 @@ export const HomeLibrary = () => {
         <p className="text-sm mb-5 text-grey-200">
           It&apos;s easy, we will help you.
         </p>
-        <Button
-          className="!bg-white w-[140px] !h-[40px] !rounded-full"
-          type="primary"
-        >
-          Create sample
-        </Button>
+        <Link to={"/upload-sample"}>
+          <Button
+            className="!bg-white w-[140px] !h-[40px] !rounded-full"
+            type="primary"
+          >
+            Create sample
+          </Button>
+        </Link>
       </div>
 
       <div className="bg-grey-800 py-4 px-5 rounded-xl">
@@ -35,12 +38,14 @@ export const HomeLibrary = () => {
         <p className="text-sm mb-5 text-grey-200">
           View purchased and created samples
         </p>
-        <Button
-          className="!bg-white w-[140px] !h-[40px] !rounded-full"
-          type="primary"
-        >
-          Browse samples
-        </Button>
+        <Link to="/my-samples">
+          <Button
+            className="!bg-white w-[140px] !h-[40px] !rounded-full"
+            type="primary"
+          >
+            Browse samples
+          </Button>
+        </Link>
       </div>
     </div>
   );

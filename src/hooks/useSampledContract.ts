@@ -30,11 +30,12 @@ export const useUploadSample = () => {
   const { address, signTransaction } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
   });
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (payload: IUploadSamplePayload) => {
@@ -44,15 +45,32 @@ export const useUploadSample = () => {
       const response = await client.upload_sample(payload);
       response.needsNonInvokerSigningBy({ includeAlreadySigned: false });
       if (signTransaction) {
-        await response.signAndSend({
+        const txResponse = await response.signAndSend({
           force: true,
           signTransaction: signTransaction,
         });
+        return {
+          id: response,
+          transactionHash: txResponse.getTransactionResponse?.txHash ?? "",
+          seller: payload.seller,
+        };
       }
-      return response;
     },
-    onError: (error) => {
-      console.error("Failed to upload sample:", error);
+    onSuccess(data) {
+      queryClient.invalidateQueries({
+        queryKey: ["user-samples", data?.seller],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["all-samples"],
+      });
+    },
+    onError: () => {
+      toast.error("Error", {
+        className: "!bg-red-500 *:!text-white !border-0",
+        description: "Failed to upload sample",
+        duration: 5000,
+        icon: IoCloseCircleSharp({ size: 24 }),
+      });
     },
   });
 };
@@ -61,7 +79,7 @@ export const useGetUserSamples = () => {
   const { address } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -81,7 +99,7 @@ export const useGetAllSamples = () => {
   const { address } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -99,7 +117,7 @@ export const useGetSample = (sample_id: string) => {
   const { address } = useWallet();
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -121,7 +139,7 @@ export const usePurchaseSample = () => {
 
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -196,7 +214,7 @@ export const useHasPurchased = (sampleId: number) => {
 
   const client = new Client.Client({
     networkPassphrase: "Test SDF Network ; September 2015",
-    contractId: "CA7DGEWWS3VH5J2I4I7FFEB5UHK2MJSYWDKDQKXQM7GDNLI2IRATDTLG",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
     rpcUrl,
     allowHttp: true,
     publicKey: address,
@@ -211,9 +229,65 @@ export const useHasPurchased = (sampleId: number) => {
         buyer: address,
         sample_id: sampleId,
       });
-
+      console.log(response.result);
       return response.result || false;
     },
     enabled: !!address && !!sampleId,
+  });
+};
+
+export const useGetUserPurchases = () => {
+  const { address } = useWallet();
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+  return useQuery({
+    queryFn: async () => {
+      const { result } = await client.get_user_purchases({
+        buyer: address!,
+      });
+      return result;
+    },
+    queryKey: ["user-purchases", address],
+  });
+};
+
+export const useGetStats = () => {
+  const { address } = useWallet();
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+  return useQuery({
+    queryFn: async () => {
+      const { result } = await client.get_stats();
+      return result;
+    },
+    queryKey: ["stats"],
+  });
+};
+
+export const useGetUserEarnings = () => {
+  const { address } = useWallet();
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+  return useQuery({
+    queryFn: async () => {
+      const { result } = await client.get_earnings({ user: address! });
+      return result;
+    },
+    queryKey: ["user-earnings", address],
   });
 };

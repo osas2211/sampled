@@ -22,6 +22,7 @@ export const PurchaseSampleTab = ({ sample }: { sample: Sample }) => {
   const { mutate: purchaseSample, isPending: isPurchasing } =
     usePurchaseSample();
   const { address } = useWallet();
+  const isSeller = address === sample?.seller;
 
   const handlePurchase = async () => {
     if (!address) {
@@ -42,6 +43,8 @@ export const PurchaseSampleTab = ({ sample }: { sample: Sample }) => {
           action: (
             <Link
               to={`https://stellar.expert/explorer/testnet/tx/${data?.transactionHash}`}
+              target="_blank"
+              className="underline font-semibold"
             >
               View on explorer
             </Link>
@@ -76,13 +79,19 @@ export const PurchaseSampleTab = ({ sample }: { sample: Sample }) => {
         <p className="text-lg md:text-xl">
           Price: {stroopsToXlm(sample?.price)} XLM
         </p>
-        {hasPurchased && (
+        {isSeller ? (
+          <p className="bg-primary p-1 px-2 text-xs rounded-full text-black">
+            Seller
+          </p>
+        ) : hasPurchased ? (
           <p className="bg-primary p-1 px-2 text-xs rounded-full text-black">
             Purchased
           </p>
+        ) : (
+          <></>
         )}
       </div>
-      {!hasPurchased ? (
+      {!hasPurchased && !isSeller ? (
         <div className="space-y-2">
           <Button
             className={` w-full !h-[45px]`}

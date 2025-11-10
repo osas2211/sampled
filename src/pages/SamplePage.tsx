@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+
 import { Avatar } from "antd";
 import { BsThreeDots } from "react-icons/bs";
 import { PiPauseCircleDuotone, PiPlayCircleDuotone } from "react-icons/pi";
 import { TradeSample } from "../components/music/TradeSample";
 import { useAudioPlayerContext } from "../context/audio-player-context";
-import { useGetSample } from "../hooks/useSampledContract";
+import { useGetSample, useHasPurchased } from "../hooks/useSampledContract";
 import { useParams } from "react-router-dom";
 import { truncateString } from "../util/string-helpers";
 import { Download } from "lucide-react";
+import { downloadAudio } from "../util/download-audio";
+import { useWallet } from "../hooks/useWallet";
 
 const SamplePage = () => {
   const { id } = useParams();
@@ -16,12 +20,16 @@ const SamplePage = () => {
     url: data?.ipfs_link ?? "",
     title: data?.title ?? "",
     artist: truncateString(data?.seller ?? ""),
-    artwork: data?.cover_image ?? "",
+    artwork: data?.cover_image || "/favicon.ico",
   };
 
   const handlePlayTrack = () => {
     playTrack(track);
   };
+
+  const { data: hasPurchased } = useHasPurchased(Number(id));
+  const { address } = useWallet();
+  const isSeller = address === data?.seller;
   return (
     <>
       <div className="grid md:grid-cols-7 gap-2 min-h-[91vh]">
@@ -29,11 +37,11 @@ const SamplePage = () => {
           <div className="h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex items-end gap-4 relative">
             <img
               className="absolute top-0 left-0 opacity-10 w-full h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900"
-              src={data?.cover_image ?? ""}
+              src={data?.cover_image || "/favicon.ico"}
             />
             <img
               className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900 relative"
-              src={data?.cover_image ?? ""}
+              src={data?.cover_image || "/favicon.ico"}
             />
             <div className="relative">
               <p>Sample</p>
@@ -41,7 +49,7 @@ const SamplePage = () => {
                 {data?.title ?? ""}{" "}
               </h2>
               <div className="flex gap-2 items-center">
-                <Avatar src={data?.cover_image ?? ""} />
+                <Avatar src={data?.cover_image || "/favicon.ico"} />
                 <p>
                   <strong className="text-sm">
                     {truncateString(data?.seller ?? "")}
@@ -68,7 +76,15 @@ const SamplePage = () => {
                     onClick={handlePlayTrack}
                   />
                 )}
-                <Download size={27} />
+                {(isSeller || hasPurchased) && (
+                  <Download
+                    size={27}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      downloadAudio(data?.ipfs_link ?? "", `${data?.title}.mp3`)
+                    }
+                  />
+                )}
                 <BsThreeDots />
                 {/* <PiPauseCircleDuotone className="text-[40px] md:text-[60px] text-primary" /> */}
               </div>
