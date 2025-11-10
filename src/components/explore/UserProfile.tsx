@@ -12,6 +12,7 @@ import {
   useGetUserEarnings,
   useGetUserSamples,
 } from "../../hooks/useSampledContract";
+import { WithdrawEarningsModal } from "./WithdrawEarningsModal";
 
 export const UserProfile = () => {
   const { address } = useWallet();
@@ -67,7 +68,7 @@ export const UserProfile = () => {
             <p className="text-[17px] font-semibold">{user_samples?.length}</p>
           </div>
           <div>
-            <p className="text-sm text-white/80">Sales Volume</p>
+            <p className="text-sm text-white/80">Earnings</p>
             <p className="text-[17px] font-semibold">
               {stroopsToXlm(earnings ?? 0)} XLM
             </p>
@@ -80,15 +81,7 @@ export const UserProfile = () => {
 
         <div>
           <div className="flex flex-row md:w-auto w-full md:flex-col gap-4 md:gap-7">
-            <Button
-              icon={<MdOutlineArrowForward />}
-              iconPosition="end"
-              className="w-full bg-gradient-to-t from-primary-default/20 to-primary-default/0 border-primary-default"
-              size="large"
-              type="primary"
-            >
-              Withdraw Earnings
-            </Button>
+            <WithdrawEarningsModal />
             <Link to={"/market/all"} className="block md:w-auto w-full">
               <Button
                 icon={<MdOutlineArrowForward />}

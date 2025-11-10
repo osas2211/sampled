@@ -21,7 +21,7 @@ const routes = [
   },
   {
     label: "Docs",
-    route: "",
+    route: "https://github.com/osas2211/sampled",
     target: "_blank",
   },
 ];

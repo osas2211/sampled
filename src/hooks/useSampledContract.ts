@@ -192,8 +192,8 @@ export const usePurchaseSample = () => {
       console.log("📝 Transaction:", data.transactionHash);
 
       // Invalidate related queries to refresh data
-      queryClient.invalidateQueries({ queryKey: ["userPurchases"] });
-      queryClient.invalidateQueries({ queryKey: ["earnings"] });
+      queryClient.invalidateQueries({ queryKey: ["user-purchases", address] });
+      queryClient.invalidateQueries({ queryKey: ["user-earnings", address] });
       queryClient.invalidateQueries({
         queryKey: ["single-sample", data.sample_id],
       });
@@ -289,5 +289,63 @@ export const useGetUserEarnings = () => {
       return result;
     },
     queryKey: ["user-earnings", address],
+  });
+};
+
+export const useWithdrawEarnings = () => {
+  const { address, signTransaction } = useWallet();
+  const queryClient = useQueryClient();
+
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDSCV2AJ2QUKSNBFFPPXY2FRIO2SWYSONM66XO6QTN4N326MRSWY6DDT",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+
+  return useMutation({
+    mutationFn: async (_user: string) => {
+      if (!address) {
+        throw new Error("Please connect your wallet first");
+      }
+
+      // Call the contract
+      const response = await client.withdraw_earnings({ user: address });
+
+      // Check if additional signatures are needed
+      response.needsNonInvokerSigningBy({ includeAlreadySigned: false });
+
+      if (signTransaction) {
+        // Sign and send the transaction
+        const result = await response.signAndSend({
+          force: true,
+          signTransaction: signTransaction,
+        });
+
+        console.log("✅ Withdraw successful!", result);
+
+        // Extract the IPFS hash from the result
+        // The exact structure depends on your contract's return value
+
+        return {
+          transactionHash: result.getTransactionResponse?.txHash ?? "",
+        };
+      }
+
+      throw new Error("Unable to sign transaction");
+    },
+    onSuccess: (data) => {
+      // Invalidate related queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ["user-earnings", address] });
+    },
+    onError: (error) => {
+      toast.error("Error", {
+        className: "!bg-red-500 *:!text-white !border-0",
+        description: "Failed to withdraw earnings",
+        duration: 5000,
+        icon: IoCloseCircleSharp({ size: 24 }),
+      });
+    },
   });
 };

@@ -16,7 +16,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 export const PurchaseSampleTab = ({ sample }: { sample: Sample }) => {
-  const { balances } = useWalletBalance();
+  const { balances, updateBalance } = useWalletBalance();
   const { data: hasPurchased, refetch: refetchPurchaseStatus } =
     useHasPurchased(sample?.id);
   const { mutate: purchaseSample, isPending: isPurchasing } =
@@ -51,6 +51,7 @@ export const PurchaseSampleTab = ({ sample }: { sample: Sample }) => {
           ),
         });
         refetchPurchaseStatus();
+        updateBalance();
 
         // Optionally auto-download after purchase
         if (data.ipfs_link) {
