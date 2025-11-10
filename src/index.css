@@ -42,6 +42,18 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: "Mango";
+  src: url(./fonts/MangoGrotesque-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Mango";
+  src: url(./fonts/MangoGrotesque-SemiBold.ttf);
+  font-weight: 600;
+}
+
 :root {
   --background: #010101;
   --foreground: #010101;
@@ -53,6 +65,7 @@
   --font-pixter-display: "Pixter Display", sans-serif;
   --font-sequel-sans: "Sequel Sans", sans-serif;
   --font-arvo: "Arvo", sans-serif;
+  --font-mango: "Mango", sans-serif;
 }
 
 @theme inline {
@@ -78,6 +91,7 @@
   --font-pixter: var(--font-pixter-display);
   --font-sequel: var(--font-sequel-sans);
   --font-arvo: var(--font-arvo);
+  --font-mango: var(--font-mango);
 }
 
 body {

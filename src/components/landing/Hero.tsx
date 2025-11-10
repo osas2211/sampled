@@ -31,7 +31,9 @@ export const Hero = () => {
           </div>
           <div className="flex md:flex-row flex-col md:items-center md:justify-between md:gap-4 gap-[50px] relative">
             <div className="relative z-[10]">
-              <SpecialButton>Get Started</SpecialButton>
+              <Link to={"/market/all"}>
+                <SpecialButton>Get Started</SpecialButton>
+              </Link>
             </div>
             <div className="max-w-[400px] space-y-10 md:space-y-10">
               <p className="uppercase text-pale-grey tracking-wider md:text-[16px] text-sm relative hero-caption">

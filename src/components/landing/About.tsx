@@ -106,7 +106,7 @@ export const About = () => {
               success. It's making it.
             </p>
             <Link
-              to="/onboard"
+              to="/market/all"
               className="inline-flex gap-3 items-center mt-5 md:mt-7 text-primary md:text-lg"
             >
               <PiArrowBendDownRight size={30} className="text-primary" />

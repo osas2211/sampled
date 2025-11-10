@@ -3,6 +3,7 @@ import { FiArrowUpLeft, FiArrowDownRight } from "react-icons/fi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,15 +34,14 @@ export const GetStarted = () => {
                 </span>{" "}
                 move, cook, and Earn.
               </h2>
-              <div className="mt-5 md:mt-12 relative cursor-pointer inline-block">
-                <div className="absolute top-0 left-0 h-[50px] w-[50px] rounded-full bg-primary"></div>
-                <div
-                  // to={"/onboard"}
-                  className="w-[200px] h-[50px] bg-primary inline-flex items-center justify-center text-black rounded-full ml-[40px]"
-                >
-                  Get started
+              <Link to={"/market/all"}>
+                <div className="mt-5 md:mt-12 relative cursor-pointer inline-block">
+                  <div className="absolute top-0 left-0 h-[50px] w-[50px] rounded-full bg-primary"></div>
+                  <div className="w-[200px] h-[50px] bg-primary inline-flex items-center justify-center text-black rounded-full ml-[40px]">
+                    Get started
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
 
             <div className="space-y-2">
