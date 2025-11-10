@@ -7,7 +7,7 @@ import { ReImagine } from "../components/landing/ReImagine";
 
 export const Home = () => {
   return (
-    <div className="font-sequel relative z-[30]">
+    <div className="font-sequel relative">
       <div className="overflow-x-hidden">
         <Header />
         <HeroAlt />
