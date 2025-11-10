@@ -94,7 +94,7 @@ export const InAppHeader = () => {
               <p>Home</p>
             </Link>
             <Link
-              to={""}
+              to={"/upload-sample"}
               className={`flex items-center gap-2 ${
                 pathname.includes("/upload-sample")
                   ? "text-white"
@@ -105,7 +105,7 @@ export const InAppHeader = () => {
               <p>Upload</p>
             </Link>
             <Link
-              to={""}
+              to={"/my-samples"}
               className={`flex items-center gap-2 ${
                 pathname.includes("/my-samples")
                   ? "text-white"
