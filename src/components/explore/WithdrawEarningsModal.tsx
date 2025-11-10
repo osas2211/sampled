@@ -49,7 +49,6 @@ export const WithdrawEarningsModal = () => {
         refetchEarnings();
         await updateBalance();
         setOpenModal(false);
-        location.reload();
       },
     });
   };
