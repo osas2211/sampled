@@ -8,6 +8,7 @@ import SampleInfoTabs from "./SampleInfoTabs";
 import { Sample } from "sampled";
 import { Link } from "react-router-dom";
 import { truncateString } from "../../util/string-helpers";
+import { stroopsToXlm } from "../../hooks/useSampledContract";
 
 export const TradeSample = ({ sample }: { sample: Sample }) => {
   return (
@@ -38,7 +39,7 @@ export const TradeSample = ({ sample }: { sample: Sample }) => {
           <div className="flex items-center gap-1">
             <TbTrendingUp />
             <p className="text-primary text-sm">
-              {sample?.price?.toLocaleString()} XLM
+              {stroopsToXlm(sample?.price)} XLM
             </p>
           </div>
         </div>

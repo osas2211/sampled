@@ -26,12 +26,16 @@ const SamplePage = () => {
     <>
       <div className="grid md:grid-cols-7 gap-2 min-h-[91vh]">
         <div className="md:col-span-5">
-          <div className="h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex items-end gap-4">
+          <div className="h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex items-end gap-4 relative">
             <img
-              className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900"
+              className="absolute top-0 left-0 opacity-10 w-full h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900"
               src={data?.cover_image ?? ""}
             />
-            <div>
+            <img
+              className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900 relative"
+              src={data?.cover_image ?? ""}
+            />
+            <div className="relative">
               <p>Sample</p>
               <h2 className="md:text-[5vh] font-semibold leading-[1.2]">
                 {data?.title ?? ""}{" "}
@@ -39,7 +43,9 @@ const SamplePage = () => {
               <div className="flex gap-2 items-center">
                 <Avatar src={data?.cover_image ?? ""} />
                 <p>
-                  <strong>{truncateString(data?.seller ?? "")}</strong>,{" "}
+                  <strong className="text-sm">
+                    {truncateString(data?.seller ?? "")}
+                  </strong>{" "}
                   <span className="text-grey-200">
                     {data?.total_sales ?? "0"} Sales
                   </span>

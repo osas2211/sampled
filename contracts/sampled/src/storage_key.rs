@@ -4,9 +4,10 @@ use soroban_sdk::{contracttype, Address};
 #[derive(Debug, Clone)]
 pub enum StorageKey {
     Sample(u32),
-    Puchase(Address, u32),
+    Purchase(Address, u32),
     UserSamples(Address),
     Earnings(Address),
+    UserPurchases(Address),
     PlaformFee,
     TotalSamples,
     PlatformAddress,

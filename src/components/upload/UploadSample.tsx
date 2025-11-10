@@ -363,7 +363,7 @@ const UploadUI: React.FC<UploadUIProps> = ({
       }
 
       await uploadSample({
-        price: BigInt(formData.price),
+        price: BigInt(Number(formData.price) * 10_000_000),
         ipfs_link: audioLink ?? "",
         bpm: Number(formData.bpm),
         title: formData.title,
