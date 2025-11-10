@@ -6,7 +6,7 @@ import { LiaListUlSolid } from "react-icons/lia";
 import { SampleCard } from "./SampleCard";
 import { SampleListCard } from "./SampleListCard";
 import { SamplesSkeletonLoader } from "./SamplesSkeletonLoader";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 import { MdMusicNote } from "react-icons/md";
 
 interface propsI {

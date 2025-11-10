@@ -2,7 +2,7 @@
 
 import { Avatar, Button } from "antd";
 import { useWalletBalance } from "../../hooks/useWalletBalance";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 import {
   stroopsToXlm,
   useHasPurchased,

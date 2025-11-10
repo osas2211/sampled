@@ -13,7 +13,7 @@ import {
   useGetUserSamples,
 } from "../../hooks/useSampledContract";
 import { WithdrawEarningsModal } from "./WithdrawEarningsModal";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 
 export const UserProfile = () => {
   const { address } = useWallet();

@@ -5,7 +5,7 @@ import { GoFlame } from "react-icons/go";
 import { TbTrendingUp } from "react-icons/tb";
 import { PurchaseSampleTab } from "./PurchaseSampleTab";
 import SampleInfoTabs from "./SampleInfoTabs";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 import { Link } from "react-router-dom";
 import { truncateString } from "../../util/string-helpers";
 import { stroopsToXlm } from "../../hooks/useSampledContract";

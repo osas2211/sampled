@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useWallet } from "./useWallet";
 // import sampled from "../contracts/sampled"
 import { IUploadSamplePayload } from "../@types/sample";
-import * as Client from "sampled";
+import * as Client from "./../@types/stellar-generated";
 import { rpcUrl } from "../contracts/util";
 import { toast } from "sonner";
 import { IoCloseCircleSharp } from "react-icons/io5";

@@ -1,7 +1,7 @@
 import { Avatar } from "antd";
 import { BiPlay, BiUser } from "react-icons/bi";
 import { BsFire } from "react-icons/bs";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 import { Link } from "react-router-dom";
 
 interface propsI {

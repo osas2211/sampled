@@ -1,7 +1,7 @@
 import { Avatar } from "antd";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { Sample } from "sampled";
+import { Sample } from "../../@types/stellar-generated";
 import { truncateString } from "../../util/string-helpers";
 import { stroopsToXlm } from "../../hooks/useSampledContract";
 
