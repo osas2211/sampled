@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment */
+
 import { Card } from "@stellar/design-system";
 import { JSONSchema7 } from "json-schema";
 
@@ -9,6 +11,8 @@ import {
   JsonSchemaFormProps,
   SorobanInvokeValue,
 } from "../types/types";
+
+// @ts-ignore
 import { get } from "lodash";
 
 export const renderTupleType = ({

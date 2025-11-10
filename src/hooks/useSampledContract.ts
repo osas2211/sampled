@@ -198,7 +198,7 @@ export const usePurchaseSample = () => {
         queryKey: ["single-sample", data.sample_id],
       });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Error", {
         className: "!bg-red-500 *:!text-white !border-0",
         description: "Failed to purchase sample",
@@ -335,11 +335,11 @@ export const useWithdrawEarnings = () => {
 
       throw new Error("Unable to sign transaction");
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Invalidate related queries to refresh data
       queryClient.invalidateQueries({ queryKey: ["user-earnings", address] });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Error", {
         className: "!bg-red-500 *:!text-white !border-0",
         description: "Failed to withdraw earnings",

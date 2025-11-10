@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unsafe-assignment */
+
 import * as React from "react";
 import { Server, Api } from "@stellar/stellar-sdk/rpc";
 import { xdr } from "@stellar/stellar-sdk";
@@ -78,6 +80,7 @@ export function useSubscription(
                 error,
               );
             } finally {
+              // @ts-ignore
               paging[id].pagingToken = event.pagingToken;
             }
           });

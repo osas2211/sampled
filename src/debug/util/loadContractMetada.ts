@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { Server } from "@stellar/stellar-sdk/rpc";
 import { network } from "../../contracts/util";
 import { Contract } from "@stellar/stellar-sdk";
@@ -90,6 +92,7 @@ const loadWasmBinary = async (wasmHash: string) => {
 
 export const getWasmContractData = async (wasmBytes: Buffer) => {
   try {
+    // @ts-ignore
     const mod = await WebAssembly.compile(wasmBytes);
     const result: Record<ContractSectionName, ContractData> = {
       contractmetav0: {},
