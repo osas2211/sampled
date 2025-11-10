@@ -43,8 +43,8 @@ const SamplePage = () => {
               className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900 relative"
               src={data?.cover_image || "/favicon.ico"}
             />
-            <div className="relative">
-              <p>Sample</p>
+            <div className="relative capitalize">
+              <p>{data?.genre} Sample</p>
               <h2 className="md:text-[5vh] font-semibold leading-[1.2]">
                 {data?.title ?? ""}{" "}
               </h2>

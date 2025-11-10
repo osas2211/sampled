@@ -4,8 +4,12 @@ import { MusicComments } from "./MusicComments";
 import { SampleHolders } from "./SampleHolders";
 import { Activity } from "./Activity";
 import { SampleDetails } from "./SampleDetails";
+import { useParams } from "react-router-dom";
+import { useGetSample } from "../../hooks/useSampledContract";
 
 const SampleInfoTabs = () => {
+  const { id } = useParams();
+  const { data } = useGetSample(id!);
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -17,7 +21,7 @@ const SampleInfoTabs = () => {
       label: (
         <div className=" ml-3 flex items-center gap-2">
           <p className="!text-center">Holders</p>
-          <Tag>4</Tag>
+          <Tag>{data?.total_sales || 0}</Tag>
         </div>
       ),
       children: <SampleHolders />,

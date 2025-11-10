@@ -98,12 +98,14 @@ export const Explore = () => {
                       <p className="text-grey-50">{feat.scope}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-grey-50">
-                    <div className="inline-flex bg-white rounded-bl-xl p-[6px]">
-                      <RiArrowRightUpLine className="text-night" />
+                  <Link to={"/market/all"}>
+                    <div className="flex items-center gap-2 text-grey-50">
+                      <div className="inline-flex bg-white rounded-bl-xl p-[6px]">
+                        <RiArrowRightUpLine className="text-night" />
+                      </div>
+                      <p className="text-sm">Music culture</p>
                     </div>
-                    <p className="text-sm">Music culture</p>
-                  </div>
+                  </Link>
                 </div>
                 <div className="w-[5rem] md:text-sm text-sm text-grey-200 flex items-center gap-3 mt-2">
                   <p className="">Powered by Stellar</p>
@@ -118,7 +120,7 @@ export const Explore = () => {
 
       <div className="md:space-y-4 space-y-2">
         <div className="flex items-center justify-between gap-4 md:pr-6 pr-3">
-          <p className="md:text-xl">Popular artists</p>
+          <p className="md:text-xl">Potential interests and reach</p>
           <p className="md:text-sm text-xs text-grey-300">Show more</p>
         </div>
         <div className="flex gap-4 md:gap-5 whitespace-nowrap overflow-auto scrollbar-hide w-full">
@@ -146,27 +148,28 @@ export const Explore = () => {
 
       <div className="md:space-y-4 space-y-2">
         <div className="flex items-center justify-between gap-4 md:pr-6 pr-3">
-          <p className="md:text-xl">Top albums</p>
+          <p className="md:text-xl">Top genres</p>
           <p className="md:text-sm text-xs text-grey-300">Show more</p>
         </div>
         <div className="flex gap-4 whitespace-nowrap overflow-auto scrollbar-hide w-full">
           {musicGenres.map((genre, index) => {
             return (
-              <div
-                className={`md:space-y-3 space-y-1 rounded-md max-w-[11rem]`}
-                key={index}
-              >
-                <div className="md:w-[11rem] md:h-[11rem] w-[10.2rem] h-[10.2rem]">
-                  <img
-                    src={genre.image}
-                    className={`h-[100%] w-[100%] relative transition-all object-cover rounded-xl`}
-                  />
+              <Link to={`/market/${genre.name.toLowerCase()}`} key={index}>
+                <div
+                  className={`md:space-y-3 space-y-1 rounded-md max-w-[11rem]`}
+                >
+                  <div className="md:w-[11rem] md:h-[11rem] w-[10.2rem] h-[10.2rem]">
+                    <img
+                      src={genre.image}
+                      className={`h-[100%] w-[100%] relative transition-all object-cover rounded-xl`}
+                    />
+                  </div>
+                  <div className="w-[5rem] md:text-sm text-sm text-grey-200">
+                    <p className="">{genre.name} powered by</p>
+                    <p>Sampled.</p>
+                  </div>
                 </div>
-                <div className="w-[5rem] md:text-sm text-sm text-grey-200">
-                  <p className="">{genre.name} powered by</p>
-                  <p>Sampled.</p>
-                </div>
-              </div>
+              </Link>
             );
           })}
         </div>
