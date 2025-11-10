@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrambleTextPlugin);
 const routes = [
   {
     label: "MarketPlace",
-    route: "/market/all",
+    route: "/explore",
   },
   {
     label: "Upload",
