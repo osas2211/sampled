@@ -1,7 +1,7 @@
 import { musicGenres } from "../../constants/genres";
 import { useOnboarding } from "../../hooks/useOnboarding";
 import { Avatar, Button } from "antd";
-import React from "react";
+
 import { BsArrowLeft } from "react-icons/bs";
 
 export const MusicPreference = () => {

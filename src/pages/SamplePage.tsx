@@ -1,54 +1,22 @@
 import { Avatar } from "antd";
 import { BsThreeDots } from "react-icons/bs";
-import { GrAddCircle } from "react-icons/gr";
 import { PiPauseCircleDuotone, PiPlayCircleDuotone } from "react-icons/pi";
 import { TradeSample } from "../components/music/TradeSample";
 import { useAudioPlayerContext } from "../context/audio-player-context";
-
-const lyrics = `
-How long 'til it feels like the wounds finally starting to heal
-How long 'til it feels like I'm more than a spoke in a wheel
-
-Most nights I feel that I'm not enough
-I've had my share of Monday mornings where can't get up
-When hope is lost and I come undone
-
-I swear to God I survive
-If it kills me to
-I'ma get up and try
-If it's the last thing I do
-I still got something to give
-Oh, it hurts some times
-I'm gonna get up and live
-Until the day that I die
-I swear to God I survive
-I swear to God that I survive
-
-How long 'til you know that
-How far will you go to get back to he place you belong?
-
-Most nights I feel that I'm not enough
-But I refuse to spend my best years rollin' in the sun
-So when hope is lost and I come undone
-
-I swear to God I survive
-If it kills me to
-I'ma get up and try
-If it's the last thing I do
-I still got something to give
-Oh, it hurts some times
-I'm gonna get up and live
-Until the day that I die
-I swear to God I survive
-I swear to God I survive`;
+import { useGetSample } from "../hooks/useSampledContract";
+import { useParams } from "react-router-dom";
+import { truncateString } from "../util/string-helpers";
+import { Download } from "lucide-react";
 
 const SamplePage = () => {
+  const { id } = useParams();
+  const { data } = useGetSample(id!);
   const { playTrack, audioPlayer } = useAudioPlayerContext();
   const track = {
-    url: "https://olive-obliged-capybara-834.mypinata.cloud/ipfs/bafybeidbb7vw5umhpotnbs3mx4ig6a5zolqs6myaii6ozswvpz245emwuq",
-    title: "99 (feat.Daecolm)",
-    artist: "@johnson",
-    artwork: "/assets/images/artists/artist-2.png",
+    url: data?.ipfs_link ?? "",
+    title: data?.title ?? "",
+    artist: truncateString(data?.seller ?? ""),
+    artwork: data?.cover_image ?? "",
   };
 
   const handlePlayTrack = () => {
@@ -61,18 +29,20 @@ const SamplePage = () => {
           <div className="h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex items-end gap-4">
             <img
               className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900"
-              src={"/assets/images/artists/artist-2.png"}
+              src={data?.cover_image ?? ""}
             />
             <div>
-              <p>Song</p>
-              <h2 className="md:text-[9vh] font-semibold leading-[1.2]">
-                99 (feat.Daecolm)
+              <p>Sample</p>
+              <h2 className="md:text-[5vh] font-semibold leading-[1.2]">
+                {data?.title ?? ""}{" "}
               </h2>
               <div className="flex gap-2 items-center">
-                <Avatar src={"/assets/images/artists/artist-1.avif"} />
+                <Avatar src={data?.cover_image ?? ""} />
                 <p>
-                  <strong>Jose</strong>,{" "}
-                  <span className="text-grey-200">2025. 9,326,293</span>
+                  <strong>{truncateString(data?.seller ?? "")}</strong>,{" "}
+                  <span className="text-grey-200">
+                    {data?.total_sales ?? "0"} Sales
+                  </span>
                 </p>
               </div>
             </div>
@@ -92,21 +62,36 @@ const SamplePage = () => {
                     onClick={handlePlayTrack}
                   />
                 )}
-                <GrAddCircle size={27} />
+                <Download size={27} />
                 <BsThreeDots />
                 {/* <PiPauseCircleDuotone className="text-[40px] md:text-[60px] text-primary" /> */}
               </div>
             </div>
 
-            <div className="md:max-w-[20vw]">
-              <p className="text-lg md:text-xl mb-4">Lyrics</p>
-              <p className="text-grey-200 leading-[1.6]  md:max-h-[35vh] overflow-y-auto scrollbar-hide">
-                {lyrics}
-              </p>
+            <div className="md:max-w-[25vw]">
+              <p className="text-lg md:text-xl mb-4">Fun Fact:</p>
+              <div className="text-grey-200 leading-[1.6]  md:max-h-[35vh] overflow-y-auto scrollbar-hide space-y-6">
+                <p className="">
+                  Sampled showcases why Stellar beats Ethereum for marketplaces:
+                  instant payments, negligible fees, and real-time settlement. I
+                  chose samples because producers feel the pain of slow payments
+                  most acutely. But this same architecture works for any digital
+                  commerce. Sampled isn't just a marketplace - it's a movement.
+                  Every interaction should feel like you're part of the culture.
+                  Getting Sampled isn't just selling a beat, it's validation.
+                  It's success. It's making it.
+                </p>
+
+                <p>
+                  Producers own their work, set their prices, and get paid the
+                  moment someone buys their sample. Built for instant, low-cost
+                  transactions.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <TradeSample />
+        <TradeSample sample={data!} />
       </div>
     </>
   );

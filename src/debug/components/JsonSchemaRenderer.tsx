@@ -1,5 +1,5 @@
 /* eslint-disable react-x/no-array-index-key */
-import React from "react";
+
 import { Card, Text } from "@stellar/design-system";
 import type { JSONSchema7 } from "json-schema";
 

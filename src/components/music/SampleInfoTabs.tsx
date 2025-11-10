@@ -1,4 +1,3 @@
-import React from "react";
 import { Tabs, Tag } from "antd";
 import type { TabsProps } from "antd";
 import { MusicComments } from "./MusicComments";
@@ -25,7 +24,7 @@ const SampleInfoTabs = () => {
     },
     {
       key: "3",
-      label: <p className=" ml-3 !text-center">Activity</p>,
+      label: <p className=" ml-3 !text-center">Remix</p>,
       children: <Activity />,
     },
     {

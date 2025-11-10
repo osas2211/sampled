@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import React from "react";
+
 import { PiLockFill } from "react-icons/pi";
 import { LiaCommentDotsSolid } from "react-icons/lia";
 
@@ -13,7 +13,7 @@ export const MusicComments = () => {
           disabled
           suffix={
             <div className="flex items-center gap-1 text-grey-300">
-              <p>Become a holder to unlock</p>
+              <p>Comment feature coming soon</p>
               <PiLockFill />
             </div>
           }

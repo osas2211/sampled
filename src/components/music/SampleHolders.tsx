@@ -1,7 +1,17 @@
 import { Avatar, Tag } from "antd";
-import React from "react";
+import { RiDiscLine } from "react-icons/ri";
 
 export const SampleHolders = () => {
+  const holders = [];
+  if (holders.length === 0) {
+    return (
+      <div className="h-[17rem] flex flex-col justify-center items-center">
+        <RiDiscLine size={80} className="text-grey-400" />
+        <p className="text-[16px]">No purchase yet</p>
+        <p className="text-grey-300">Be the first to make a purchase</p>
+      </div>
+    );
+  }
   return (
     <div className="space-y-5">
       <div className="flex items-center gap-4 justify-between">
@@ -13,35 +23,6 @@ export const SampleHolders = () => {
         <Tag color="success" className="!text-[14px]">
           95.643%
         </Tag>
-      </div>
-
-      <div className="flex items-center gap-4 justify-between">
-        <div className="flex items-center gap-2">
-          <span className="pr-2">2.</span>
-          <Avatar src="/assets/images/artists/artist-1.avif" />
-          <p>Creator</p>
-        </div>
-        <Tag color="blue" className="!text-[14px]">
-          2%
-        </Tag>
-      </div>
-
-      <div className="flex items-center gap-4 justify-between">
-        <div className="flex items-center gap-2">
-          <span className="pr-2">3.</span>
-          <Avatar src="/assets/images/artists/artist-3.avif" />
-          <p>justice</p>
-        </div>
-        <Tag className="!text-[14px]">0.637%</Tag>
-      </div>
-
-      <div className="flex items-center gap-4 justify-between">
-        <div className="flex items-center gap-2">
-          <span className="pr-2">4.</span>
-          <Avatar src="/assets/images/artists/artist-4.avif" />
-          <p>recasterr</p>
-        </div>
-        <Tag className="!text-[14px]">0.337%</Tag>
       </div>
     </div>
   );

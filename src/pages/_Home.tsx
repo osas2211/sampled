@@ -1,4 +1,3 @@
-import React from "react";
 import { Code, Layout, Text } from "@stellar/design-system";
 import { GuessTheNumber } from "../components/GuessTheNumber";
 

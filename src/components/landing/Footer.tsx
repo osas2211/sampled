@@ -1,4 +1,3 @@
-import React from "react";
 import { Logo } from "../shared/Logo";
 import moment from "moment";
 import { Link } from "react-router-dom";

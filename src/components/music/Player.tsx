@@ -1,5 +1,5 @@
 import { Slider } from "antd";
-import React from "react";
+
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 import {
   MdOutlinePlayCircleFilled,

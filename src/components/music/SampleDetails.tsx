@@ -1,5 +1,5 @@
 import { Avatar } from "antd";
-import React from "react";
+
 import { BiCopy, BiMusic, BiWallet } from "react-icons/bi";
 import { CiClock2 } from "react-icons/ci";
 import { GiChainLightning } from "react-icons/gi";
@@ -11,17 +11,17 @@ export const SampleDetails = () => {
       <div className="flex items-center gap-4 justify-between p-4 pt-0 rounded-md">
         <div className="flex items-center gap-2">
           <CiClock2 className="text-white" size={20} />
-          <p>Created</p>
+          <p>Contract Created</p>
         </div>
-        <div className="font-semibold">Jun 30, 2025, 2:20 AM</div>
+        <div className="font-semibold">10 November, 2025</div>
       </div>
       <div className="flex items-center gap-4 justify-between p-4 py-3 rounded-lg bg-grey-700">
         <div className="flex items-center gap-2">
           <BiWallet className="text-white" size={20} />
-          <p>Contract address</p>
+          <p>Contract ID</p>
         </div>
         <div className="flex items-center gap-1">
-          <p>0xbd79…baeb</p>
+          <p>-</p>
           <BiCopy className="cursor-pointer" />
         </div>
       </div>
@@ -31,8 +31,8 @@ export const SampleDetails = () => {
           <p>Chain</p>
         </div>
         <div className="flex items-center gap-1">
-          <Avatar src="/base.svg" size={16} />
-          <p>Base</p>
+          <Avatar src="/favicon.ico" size={16} />
+          <p>Stellar</p>
         </div>
       </div>
       <div className="flex items-center gap-4 justify-between p-4 py-3 rounded-lg bg-grey-700">
@@ -41,8 +41,7 @@ export const SampleDetails = () => {
           <p>Pair</p>
         </div>
         <div className="flex items-center gap-1">
-          <Avatar src="/assets/images/artists/artist-1.avif" size={16} />
-          <p>@justice</p>
+          <p>XLM</p>
         </div>
       </div>
       <div className="flex items-center gap-4 justify-between p-4 py-3 rounded-lg">
@@ -51,7 +50,7 @@ export const SampleDetails = () => {
           <p>Media</p>
         </div>
         <div className="flex items-center gap-1">
-          <p>MP3</p>
+          <p>MP3/WAV</p>
         </div>
       </div>
     </div>

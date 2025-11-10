@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-import React from "react";
+
 import {
   MemoType,
   NetworkError,

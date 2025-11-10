@@ -1,4 +1,3 @@
-import React from "react";
 import { ConfigProvider, theme } from "antd";
 
 export const AntConfigProvider = ({

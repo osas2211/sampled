@@ -1,4 +1,3 @@
-import React from "react";
 import { Icon } from "@stellar/design-system";
 import { useWallet } from "../hooks/useWallet";
 import { stellarNetwork } from "../contracts/util";

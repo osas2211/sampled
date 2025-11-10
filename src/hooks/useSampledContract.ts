@@ -73,3 +73,23 @@ export const useGetAllSamples = () => {
     queryKey: ["all-samples"],
   });
 };
+
+export const useGetSample = (sample_id: string) => {
+  const { address } = useWallet();
+  const client = new Client.Client({
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDYEVMNPFSEFS2ULCIRK3PNHJFA2VQ2X6OR2XQGC3GKSJ32D4KT2P4V7",
+    rpcUrl,
+    allowHttp: true,
+    publicKey: address,
+  });
+  return useQuery({
+    queryFn: async () => {
+      const { result } = await client.get_sample({
+        sample_id: Number(sample_id),
+      });
+      return result.unwrap();
+    },
+    queryKey: ["single-sample", sample_id],
+  });
+};

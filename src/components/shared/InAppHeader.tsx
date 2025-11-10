@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 import { RiHome4Line } from "react-icons/ri";
 import { CgPlayList } from "react-icons/cg";
 import { MdOutlineEventNote } from "react-icons/md";
-import { CiBellOn, CiSearch } from "react-icons/ci";
+import { CiBellOn } from "react-icons/ci";
 import { Avatar, Button } from "antd";
 import { CiMenuFries } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
@@ -56,7 +56,7 @@ export const InAppHeader = () => {
               </Link>
             </div>
             <div className="h-[45px] w-[45px] bg-grey-800 rounded-full flex items-center justify-center">
-              <CiSearch size={20} />
+              <Avatar src="/favicon.ico" size={25} />
             </div>
           </nav>
         </div>
@@ -96,24 +96,28 @@ export const InAppHeader = () => {
             <Link
               to={""}
               className={`flex items-center gap-2 ${
-                pathname.includes("/playlists") ? "text-white" : "text-grey-300"
+                pathname.includes("/upload-sample")
+                  ? "text-white"
+                  : "text-grey-300"
               }`}
             >
               <CgPlayList />
-              <p>Playlists</p>
+              <p>Upload</p>
             </Link>
             <Link
               to={""}
               className={`flex items-center gap-2 ${
-                pathname.includes("/events") ? "text-white" : "text-grey-300"
+                pathname.includes("/my-samples")
+                  ? "text-white"
+                  : "text-grey-300"
               }`}
             >
               <MdOutlineEventNote />
-              <p>Events</p>
+              <p>My samples</p>
             </Link>
           </div>
           <div className="h-[40px] w-[40px] bg-grey-800 rounded-full flex items-center justify-center">
-            <CiSearch size={18} />
+            <Avatar src="/favicon.ico" size={15} />
           </div>
         </nav>
       </div>

@@ -2,6 +2,7 @@ import { Avatar } from "antd";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { Sample } from "sampled";
+import { truncateString } from "../../util/string-helpers";
 
 interface propsI {
   sample: Sample;
@@ -23,13 +24,13 @@ export const SampleListCard = ({ sample, index }: propsI) => {
           </div>
           <div>
             <p className="md:text-lg font-semibold">{sample?.title}</p>
-            <p className="text-sm">{sample?.seller}</p>
+            <p className="text-sm">{truncateString(sample?.seller)}</p>
           </div>
         </div>
         <p className="text-sm md:block hidden">{sample?.total_sales} Sales</p>
         <div className="flex gap-2 items-center">
           <Avatar src={"/favicon.ico"} size={20} />
-          <p className="text-sm">{sample?.price?.toString()}</p>
+          <p className="text-sm">{sample?.price?.toString()} XLM</p>
         </div>
         <Link to={`/sample/${sample?.id}`}>
           <div className="md:h-[44px] h-[35px] md:w-[44px] w-[35px] rounded-full bg-primary-default flex items-center justify-center cursor-pointer">
