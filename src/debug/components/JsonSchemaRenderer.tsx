@@ -13,6 +13,7 @@ import { AnyObject, JsonSchemaFormProps } from "../types/types";
 import { renderPrimitivesType } from "./RenderPrimitivesType";
 import { renderArrayType } from "./RenderArrayType";
 import { renderOneOf } from "./RenderOneOf";
+import React from "react";
 
 export const JsonSchemaRenderer = ({
   name,

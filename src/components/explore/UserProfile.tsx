@@ -13,13 +13,17 @@ import {
   useGetUserSamples,
 } from "../../hooks/useSampledContract";
 import { WithdrawEarningsModal } from "./WithdrawEarningsModal";
+import { Sample } from "sampled";
 
 export const UserProfile = () => {
   const { address } = useWallet();
   const { data: user_samples } = useGetUserSamples();
   const { data: earnings } = useGetUserEarnings();
 
-  const hits = user_samples?.reduce((prev, curr) => prev + curr.total_sales, 0);
+  const hits = user_samples?.reduce(
+    (prev: number, curr: Sample) => prev + curr.total_sales,
+    0,
+  );
   return (
     <div className="relative overflow-hidden">
       <div className="absolute bottom-0 left-0 bg-primary-default md:w-[7rem] md:h-[7rem] h-[4rem] w-[4rem] rounded-full"></div>

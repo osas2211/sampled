@@ -1,6 +1,7 @@
-/* eslint-disable react-x/no-array-index-key */
+/* eslint-disable react-x/no-array-index-key,  @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment */
 import type { JSONSchema7 } from "json-schema";
 import { Button, Card, Icon, Text } from "@stellar/design-system";
+// @ts-ignore
 import { get } from "lodash";
 
 import { jsonSchema } from "../util/jsonSchema";

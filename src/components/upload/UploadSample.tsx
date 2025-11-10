@@ -5,19 +5,8 @@ import React, {
   useCallback,
   ChangeEvent,
   DragEvent,
-  FormEvent,
 } from "react";
-import {
-  Upload,
-  Music,
-  Loader2,
-  Check,
-  X,
-  Zap,
-  TrendingUp,
-  XIcon,
-} from "lucide-react";
-import { Header } from "../shared/Header";
+import { Upload, Music, Check, X, Zap } from "lucide-react";
 import { useUploadSample } from "../../hooks/useSampledContract";
 import { useWallet } from "../../hooks/useWallet";
 import { Button } from "antd";
@@ -89,15 +78,11 @@ interface UploadUIProps {
 }
 
 // Component
-const UploadUI: React.FC<UploadUIProps> = ({
-  onUploadComplete,
-  walletAddress,
-  platformFeePercentage = 10,
-}) => {
+const UploadUI: React.FC<UploadUIProps> = ({ platformFeePercentage = 10 }) => {
   // State management with proper types
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
-  const [fileMetadata, setFileMetadata] = useState<FileMetadata | null>(null);
+  const [_fileMetadata, setFileMetadata] = useState<FileMetadata | null>(null);
   const [uploadProgress, setUploadProgress] = useState<UploadProgress>({
     status: "idle",
     percentage: 0,
@@ -315,22 +300,6 @@ const UploadUI: React.FC<UploadUIProps> = ({
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
-  };
-
-  const handleTagAdd = (tag: string): void => {
-    if (tag && !formData.tags.includes(tag)) {
-      setFormData((prev) => ({
-        ...prev,
-        tags: [...prev.tags, tag],
-      }));
-    }
-  };
-
-  const handleTagRemove = (tagToRemove: string): void => {
-    setFormData((prev) => ({
-      ...prev,
-      tags: prev.tags.filter((tag) => tag !== tagToRemove),
-    }));
   };
 
   // Upload handler

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { useState } from "react";
 import { Button, Text, Profile } from "@stellar/design-system";
@@ -11,7 +11,7 @@ import { CopyOutlined, DisconnectOutlined } from "@ant-design/icons";
 export const WalletButton = () => {
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
   const { address, isPending } = useWallet();
-  const { xlm, ...balance } = useWalletBalance();
+  const { xlm } = useWalletBalance();
   const buttonLabel = isPending ? "Loading..." : "Connect";
 
   const copyAddress = async () => {
