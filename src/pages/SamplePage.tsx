@@ -34,13 +34,13 @@ const SamplePage = () => {
     <>
       <div className="grid md:grid-cols-7 gap-2 min-h-[91vh]">
         <div className="md:col-span-5">
-          <div className="h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex items-end gap-4 relative">
+          <div className="md:h-[19rem] bg-grey-600 rounded-t-xl py-6 pt-9 px-6 flex md:flex-row flex-col md:items-end gap-4 relative">
             <img
               className="absolute top-0 left-0 opacity-10 w-full h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900"
               src={data?.cover_image || "/favicon.ico"}
             />
             <img
-              className="w-[15rem] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900 relative"
+              className="md:w-[15rem] w-[70%] h-full rounded-md object-cover object-top shadow-2xl shadow-grey-900 relative"
               src={data?.cover_image || "/favicon.ico"}
             />
             <div className="relative capitalize">
